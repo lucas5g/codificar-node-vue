@@ -3,6 +3,7 @@
     <div class="container-fluid" v-if="issues.length === 0">
       <div class="row" style="margin-top: 100px">
         <div class="col">Carregando...</div>
+
       </div>
     </div>
     <div class="container-fluid" v-else>

@@ -187,7 +187,7 @@ export default {
         const { data } = error.response;
         // console.log('erro', error.message);
         alert(data.msg);
-        console.log(data.msg);
+        console.log({error});
       }
 
       return;

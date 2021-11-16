@@ -17,3 +17,5 @@ const baseUrl = () => {
 export const api = axios.create({
     baseURL: `${baseUrl()}/api/`
 })
+
+console.log(baseUrl())
