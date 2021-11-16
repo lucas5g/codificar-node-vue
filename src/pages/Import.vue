@@ -95,7 +95,7 @@
 </template>
 
 <script>
-import api from "../services/api";
+import {api} from "../services/api";
 export default {
   data() {
     return {
@@ -161,7 +161,6 @@ export default {
 
     async handleLoadProducts(event) {
       event.preventDefault();
-      this.disabledButton = true;
       // console.log('test')
       // return
       this.numberProductsCreated = 0;
@@ -179,7 +178,10 @@ export default {
       // }
 
       try {
+          this.disabledButton = true;
+
         const { data } = await api.post("/products/load", formData);
+        console.log(data)
 
         this.products = data;
         this.disabledButton = false;

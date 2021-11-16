@@ -4,10 +4,11 @@ import { exec } from 'child_process'
 
 export const imageBase64 = (file) => {
     try {
-        return path(file)
+        return 'data:image/jpeg;base64,' + readFileSync('../uploads/' + file + '.jpg', 'base64')
 
     } catch {
-        return path('no-image')
+        console.log('file not found')
+        // return path('no-image')
     }
 }
 
@@ -33,15 +34,17 @@ export const loadImage = (file) => {
 
 
 }
-
-const path = (name) => {
-        // return `http://localhost:8000/uploads/${encodeURI(name)}.jpg`
-        return `data:image/jpeg;base64,${readFileSync(`./public/uploads/${name}.jpg`, 'base64')}`
+const pathname = () => {
+    return path.resolve()
 }
+// const path = (name) => {
+//         // return `http://localhost:8000/uploads/${encodeURI(name)}.jpg`
+//         return `data:image/jpeg;base64,${readFileSync(`./public/uploads/${name}.jpg`, 'base64')}`
+// }
 
 export const unzip = (filename) => {
 
-    exec(`unzip ${__dirname}/../../public/uploads/${filename} -d ${__dirname}/../../public/uploads`, (error, sdout, stderr ) => {
+    exec(`unzip ${path.resolve()}/../../public/uploads/${filename} -d ${__dirname}/../../public/uploads`, (error, sdout, stderr ) => {
 
         if(error){
             console.log(`error: ${error}`)

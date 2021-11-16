@@ -24,8 +24,8 @@ export default {
         }
     },
     created(){
-        console.log(this.issues)
-        console.log(this.issues.length)
+        // console.log(this.issues)
+        // console.log(this.issues.length)
     }
 }
 </script>
