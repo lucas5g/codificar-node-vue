@@ -6,7 +6,8 @@
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
-        "dev": "nodemon ./api/index.mjs"
+        "dev": "nodemon ./api/index.mjs",
+        "auto":"node auto.mjs"
     },
     "dependencies": {
         "axios": "^0.24.0",
@@ -15,6 +16,7 @@
         "csvtojson": "^2.0.10",
         "dotenv": "^10.0.0",
         "express": "^4.17.1",
+        "minimist": "^1.2.5",
         "multer": "^1.4.3",
         "vue": "^2.6.11",
         "vue-router": "^3.5.3",
