@@ -1,12 +1,3 @@
-import path from 'path'
-import { IssueController } from "../controllers/IssueController.mjs";
-import dotenv from 'dotenv'
-dotenv.config()
+import {pathname} from '../helpers/index.mjs'
 
-// IssueController.index()
-
-// console.log(process.env.REDMINE_URL)
-// console.log(process.env.REDMINE_KEY)
-
-// console.log(path.resolve())
-// console.log(process.cwd())
+console.log(pathname())

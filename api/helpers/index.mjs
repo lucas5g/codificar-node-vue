@@ -3,20 +3,31 @@ import path from 'path'
 import { exec } from 'child_process'
 
 export const imageBase64 = (file) => {
+    const pathUploads =  `${path.resolve()}/uploads/${file}`
     try {
-        return 'data:image/jpeg;base64,' + readFileSync('../uploads/' + file + '.jpg', 'base64')
+        return 'data:image/jpeg;base64,' + readFileSync( pathUploads +'.jpg', 'base64')
+
 
     } catch {
-        console.log('file not found')
+        console.log('file not found .jpg')
+        // return path('no-image')
+    }
+    //get image png
+    try {
+        return 'data:image/jpeg;base64,' + readFileSync(pathUploads + '.png', 'base64')
+
+    } catch {
+        console.log('file not found .png')
+        return  'data:image/jpeg;base64,' + readFileSync(path.resolve()+'/uploads/no-image.jpg', 'base64')
         // return path('no-image')
     }
 }
 
 export const loadImage = (file) => {
-    const pathJpg = path.resolve() + '/../../public/uploads/${file}.jpg'
-    const pathJpeg = path.resolve() + '/../../public/uploads/${file}.jpeg'
-    const pathPng = path.resolve() + '/../../public/uploads/${file}.png'
-    const pathNoImage = path.resolve() + '/../../public/uploads/no-image.jpg'
+    const pathJpg = `${path.resolve()}/uploads/${file}.jpg`
+    const pathJpeg = `${path.resolve()}/uploads/${file}.jpeg`
+    const pathPng = `${path.resolve()}/uploads/${file}.png`
+    const pathNoImage = `${path.resolve()}/uploads/no-image.jpg`
 
     if (existsSync(pathJpg)) {
 
@@ -34,7 +45,7 @@ export const loadImage = (file) => {
 
 
 }
-const pathname = () => {
+export const pathname = () => {
     return path.resolve()
 }
 // const path = (name) => {
@@ -44,7 +55,7 @@ const pathname = () => {
 
 export const unzip = (filename) => {
 
-    exec(`unzip ${path.resolve()}/../../public/uploads/${filename} -d ${__dirname}/../../public/uploads`, (error, sdout, stderr ) => {
+    exec(`unzip ${path.resolve()}/uploads/${filename} -d ${path.resolve()}/uploads`, (error, sdout, stderr ) => {
 
         if(error){
             console.log(`error: ${error}`)

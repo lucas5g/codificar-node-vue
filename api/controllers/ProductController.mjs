@@ -1,9 +1,12 @@
-import { unzip } from '../helpers/index.mjs'
+import csvtojson from 'csvtojson'
+import axios from 'axios'
+import { unzip, loadImage, imageBase64 } from '../helpers/index.mjs'
 class ProductController {
 
     static async load(req, res) {
         const files = req.files
 
+        // return res.json(req.files)
         //@ts-ignore
         if (!('csv' in files)) {
             return res
@@ -65,6 +68,49 @@ class ProductController {
         return res.json(
             products
         )
+
+    }
+
+    static async create(req, res){
+        
+        // return res.json({body: req.body})
+        const { product, baseUrl } = req.body
+
+
+        if(baseUrl === ''){
+            res.json({
+                msg: 'Define a baseUrl do Projeto'
+            })
+            return
+        }
+        // console.log('create product')
+
+        //add image
+        product.Vendoritem.image_content = imageBase64(product.Vendoritem.item_name)
+
+        // return res.json(product)
+
+        const { data } = await axios.post(`${baseUrl}/api/v3/product/create.html`, product, { maxBodyLength: 20000000 })
+
+
+        if (data.httpcode === '407') {
+            return res.json({
+                msg: ' - Já foi Cadastrado',
+                product
+            })
+        }
+        if (data.httpcode === 200) {
+            return res.json({
+                msg: ' - Cadastrado com Sucesso',
+                product
+            })
+        }
+
+        res.json({
+            msg: ' - Erro',
+            product,
+            data
+        })
 
     }
 }

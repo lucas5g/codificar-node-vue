@@ -11,7 +11,7 @@ import './services/jobs.mjs'
 const app = express()
 
 app.use(cors())
-    // app.use(express.json())
+app.use(express.json())
 
 app.use('/api/issues', routesIssues)
 app.use('/api/products', routesProducts)
@@ -19,6 +19,8 @@ app.use('/api/products', routesProducts)
 app.use('/', express.static(path.resolve() + '/dist/'))
 app.use('/importacao', express.static(path.resolve() + '/dist/'))
 app.use('/issues', express.static(path.resolve() + '/dist/'))
+app.use('/uploads', express.static(path.resolve() + '/uploads/'))
+
 
 
 const port = '8000'
