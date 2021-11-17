@@ -12,4 +12,8 @@ export const apiRedmine = axios.create({
     }
 })
 
+export const apiRocket = axios.create({
+    baseURL: 'https://chat.codificar.com.br/api/v1'
+})
+
 // export const api =
