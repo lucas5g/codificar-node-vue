@@ -7,7 +7,7 @@
         "build": "vue-cli-service build",
         "lint": "vue-cli-service lint",
         "dev": "nodemon ./api/index.mjs",
-        "auto": "node auto.mjs"
+        "auto": "node ./api/services/auto.mjs"
     },
     "dependencies": {
         "axios": "^0.24.0",
