@@ -1,7 +1,12 @@
 class AutoController {
 
-    static gitpull() {
-        const command = 'sudo git pull && sudo npm run build'
+    static versionGitPullRunTest(){
+        const command =  'ssh versionaplicativoderestaurante  "cd /var/www/versionaplicativoderestaurante/current && sudo git pull"'
+        return command
+    }
+
+    static gitPull() {
+        const command = 'sudo git pull && sudo yarn build'
         return this.path({ command })
     }
 
@@ -14,7 +19,7 @@ class AutoController {
 
     static push(message) {
 
-        const command = `cd ~/projects/marketplace/codificar/codificar-node-vue && git add . && git commit -m "${message}" && git push && ${this.gitpull()}`
+        const command = `cd ~/projects/marketplace/codificar-node-vue && git add . && git commit -m "${message}" && git push && ${this.gitPull()}`
         return command
 
     }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container-fluid" v-if="issues.length === 0" >
+    <div class="container-fluid" v-if="issues.length === 0">
       <div class="row" style="margin-top: 100px">
         <div class="col">Carregando...</div>
       </div>
@@ -12,7 +12,7 @@
           <select
             class="form-select"
             style="font-size: 28px; cursor: pointer"
-     
+            @change="issuesFilter"
             v-model="assignedSelected"
             name="assignedSelected"
           >
@@ -74,11 +74,10 @@ export default {
     // this.issuesFilter();
   },
   methods: {
-
-    comboFunction(){
-        this.loadIssues()
-        this.issuesFilter()
-    },  
+    comboFunction() {
+      this.loadIssues();
+      this.issuesFilter();
+    },
     issuesFilter() {
       // this.loadIssues()
       // console.log("carregouu");

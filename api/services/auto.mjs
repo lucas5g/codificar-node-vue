@@ -6,11 +6,23 @@ import { AutoController } from "../controllers/AutoController.mjs";
 (() => {
     const args = minimist(process.argv.slice())
 
-    const { a: action, m: message } = args
 
+    const { c: command, m: message } = args
 
+    let commandRun = ''
+    //traducao do comando
+    switch(command){
+        case 'version':
+            commandRun = 'versionGitPullRunTest'
+            break;
+            
+        default:
+            commandRun = command
+    }
+
+    console.log(commandRun)
     try {
-        const commands = AutoController[action](message)
+        const commands = AutoController[commandRun](message)
 
         console.log(commands)
             // return
@@ -28,7 +40,7 @@ import { AutoController } from "../controllers/AutoController.mjs";
 
         /** */
     } catch (err) {
-        console.log('Comando não encontrado')
-            // console.log(err)
+        console.log(commandRun)
+        console.log(err)
     }
 })()
