@@ -95,8 +95,9 @@
 </template>
 
 <script>
-import {api} from "../services/api";
+import { api } from "../services/api";
 export default {
+  title: "test",
   data() {
     return {
       numberProductsCreated: 0,
@@ -115,6 +116,7 @@ export default {
   },
   mounted() {
     console.log("mounted");
+    document.title = 'Importação'
     // this.handleCreateProducts()
   },
   methods: {
@@ -178,10 +180,10 @@ export default {
       // }
 
       try {
-          this.disabledButton = true;
+        this.disabledButton = true;
 
         const { data } = await api.post("/products/load", formData);
-        console.log(data)
+        console.log(data);
 
         this.products = data;
         this.disabledButton = false;
@@ -189,7 +191,7 @@ export default {
         const { data } = error.response;
         // console.log('erro', error.message);
         alert(data.msg);
-        console.log({error});
+        console.log({ error });
       }
 
       return;

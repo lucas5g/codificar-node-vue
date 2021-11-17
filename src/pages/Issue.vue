@@ -3,7 +3,6 @@
     <div class="container-fluid" v-if="issues.length === 0">
       <div class="row" style="margin-top: 100px">
         <div class="col">Carregando...</div>
-
       </div>
     </div>
     <div class="container-fluid" v-else>
@@ -40,7 +39,7 @@
 </template>
 
 <script>
-import {api} from "../services/api";
+import { api } from "../services/api";
 import IssuesColumn from "../components/IssuesColumn.vue";
 
 export default {
@@ -70,9 +69,8 @@ export default {
     };
   },
   created() {
+    document.title = "Issues - Redmine";
     this.loadIssues();
-    // console.log(this.issuesNew)
-    // console.log('mounte')
   },
   methods: {
     issuesFilter() {

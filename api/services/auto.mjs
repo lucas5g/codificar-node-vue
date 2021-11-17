@@ -18,7 +18,6 @@ try {
         }
         console.log(`stdout: ${stdout}`);
         console.error(`stderr: ${stderr}`);
-        console.log('http://dev.appmarketplace.com.br:8000')
     })
 
     /** */
