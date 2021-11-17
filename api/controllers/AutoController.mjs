@@ -14,7 +14,7 @@ class AutoController {
 
     static push(message) {
 
-        const command = `git add . && git commit -m "${message}" && ${this.gitpull()}`
+        const command = `cd ~/projects/marketplace/codificar/codificar-node-vue && git add . && git commit -m "${message}" && ${this.gitpull()}`
         return command
 
     }

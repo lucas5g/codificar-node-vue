@@ -71,7 +71,7 @@ export default {
   created() {
     document.title = "Issues - Redmine";
     this.loadIssues();
-    // this.issuesFilter()
+   console.log('17/11')
   },
   methods: {
     issuesFilter() {
