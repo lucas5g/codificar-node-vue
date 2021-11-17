@@ -1,18 +1,18 @@
 <template>
   <div>
-    <div class="container-fluid" v-if="issues.length === 0">
+    <div class="container-fluid" v-if="issues.length === 0" >
       <div class="row" style="margin-top: 100px">
         <div class="col">Carregando...</div>
       </div>
     </div>
-    <div class="container-fluid" v-else>
+    <div class="container-fluid" v-else @click="comboFunction">
       <div class="row mb-3 d-flex justify-content-end">
         <div class="col-md-4">
           <!-- <h2>Issues ({{issues.length}})</h2> -->
           <select
             class="form-select"
             style="font-size: 28px; cursor: pointer"
-            @change="issuesFilter"
+     
             v-model="assignedSelected"
             name="assignedSelected"
           >
@@ -71,11 +71,17 @@ export default {
   created() {
     document.title = "Issues - Redmine";
     this.loadIssues();
+    // this.issuesFilter();
   },
   methods: {
+
+    comboFunction(){
+        this.loadIssues()
+        this.issuesFilter()
+    },  
     issuesFilter() {
-    // this.loadIssues()    
-        // console.log("carregouu");
+      // this.loadIssues()
+      // console.log("carregouu");
 
       this.issuesAssigned =
         this.assignedSelected === ""
@@ -106,6 +112,7 @@ export default {
       // return 'test'
     },
     async loadIssues() {
+      console.log("carregou");
       try {
         const { data } = await api.get("/issues");
         // console.log(data)
