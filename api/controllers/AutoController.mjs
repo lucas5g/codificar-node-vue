@@ -6,7 +6,7 @@ class AutoController {
     }
 
     static gitPull() {
-        const command = 'sudo git pull && sudo yarn build'
+        const command = 'sudo git pull && sudo npm run  build'
         return this.path({ command })
     }
 
