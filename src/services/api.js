@@ -18,4 +18,4 @@ export const api = axios.create({
     baseURL: `${baseUrl()}/api/`
 })
 
-console.log(baseUrl())
+console.log('BASE_URL' + baseUrl())
