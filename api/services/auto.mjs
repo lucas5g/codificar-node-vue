@@ -10,8 +10,6 @@ const { a: action } = args
 try {
     const commands = AutoController[action]()
 
-
-
     exec(commands, (error, stdout, stderr) => {
 
         if (error) {
