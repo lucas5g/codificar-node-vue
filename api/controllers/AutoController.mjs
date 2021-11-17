@@ -12,6 +12,13 @@ class AutoController {
         return this.path({ command })
     }
 
+    static push(message) {
+
+        const command = `git add . && git commit -m "${message}" && ${this.gitpull()}`
+        return command
+
+    }
+
     static path({ command }) {
         console.log('http://dev.appmarketplace.com.br:8000')
 

@@ -71,13 +71,12 @@ export default {
   created() {
     document.title = "Issues - Redmine";
     this.loadIssues();
+    // this.issuesFilter()
   },
   methods: {
     issuesFilter() {
-      //   console.log("carregouu");
-
-      //   console.log("change", this.assignedSelected);
-      // console.log(this.assignedSelected)
+    // this.loadIssues()    
+        console.log("carregouu");
 
       this.issuesAssigned =
         this.assignedSelected === ""
