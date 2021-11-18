@@ -23,8 +23,7 @@ class AutoController {
             cd ~/projects/marketplace/codificar-node-vue && 
             git add . && 
             git commit -m "${message}" && 
-            git push && 
-            ssh devmarketplace "cd /var/www/codificar/codificar-node-vue && sudo git pull && sudo npm yarn build"        
+            git push && ssh devmarketplace "cd /var/www/codificar/codificar-node-vue && sudo git pull && sudo npm yarn build"        
         `
         return command
 
