@@ -1,28 +1,29 @@
-import minimist from "minimist";
+// import minimist from "minimist";
 import { exec } from "child_process"
 import { AutoController } from "../controllers/AutoController.mjs";
 // import { stderr, stdout } from "process";
 
 (() => {
-    const args = minimist(process.argv.slice())
+    const args = process.argv.slice(2)
 
+    const command = args[0]
+    const message = args[1]
 
-    const { c: command, m: message } = args
-
-    let commandRun = ''
-    //traducao do comando
-    switch(command){
-        case 'version':
-            commandRun = 'versionGitPullRunTest'
-            break;
+ 
+    // let commandRun = ''
+    // //traducao do comando
+    // switch(command){
+    //     case 'version':
+    //         commandRun = 'versionGitPullRunTest'
+    //         break;
             
-        default:
-            commandRun = command
-    }
+    //     default:
+    //         commandRun = command
+    // }
 
-    console.log(commandRun)
+    // console.log(commandRun)
     try {
-        const commands = AutoController[commandRun](message)
+        const commands = AutoController[command](message)
 
         console.log(commands)
             // return
