@@ -9,11 +9,18 @@ cron.schedule('0 58 23 * * 1-5', () => {
 })
 
 
-cron.schedule('0 26 0-16 * * 1-5', () => {
+cron.schedule('0 26 16 * * 1-5', () => {
 
     BotController.testBot()
-})
+});
 
-// const test = 'gitpull'
 
-// console.log(AutoController[test]())
+// import urlExist from 'url-exist'
+// import express from 'express'
+import axios from 'axios';
+// const app = express()
+
+(async() => {
+    // console.log('test')
+
+})()

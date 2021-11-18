@@ -1,16 +1,17 @@
 import { readFileSync, existsSync } from 'fs'
 import path from 'path'
 import { exec } from 'child_process'
+import axios from 'axios'
 
 export const imageBase64 = (file) => {
-    const pathUploads =  `${path.resolve()}/uploads/${file}`
+    const pathUploads = `${path.resolve()}/uploads/${file}`
     try {
-        return 'data:image/jpeg;base64,' + readFileSync( pathUploads +'.jpg', 'base64')
+        return 'data:image/jpeg;base64,' + readFileSync(pathUploads + '.jpg', 'base64')
 
 
     } catch {
         console.log('file not found .jpg')
-        // return path('no-image')
+            // return path('no-image')
     }
     //get image png
     try {
@@ -18,8 +19,8 @@ export const imageBase64 = (file) => {
 
     } catch {
         console.log('file not found .png')
-        return  'data:image/jpeg;base64,' + readFileSync(path.resolve()+'/uploads/no-image.jpg', 'base64')
-        // return path('no-image')
+        return 'data:image/jpeg;base64,' + readFileSync(path.resolve() + '/uploads/no-image.jpg', 'base64')
+            // return path('no-image')
     }
 }
 
@@ -46,26 +47,35 @@ export const loadImage = (file) => {
 
 }
 export const pathname = () => {
-    return path.resolve()
-}
-// const path = (name) => {
-//         // return `http://localhost:8000/uploads/${encodeURI(name)}.jpg`
-//         return `data:image/jpeg;base64,${readFileSync(`./public/uploads/${name}.jpg`, 'base64')}`
-// }
+        return path.resolve()
+    }
+    // const path = (name) => {
+    //         // return `http://localhost:8000/uploads/${encodeURI(name)}.jpg`
+    //         return `data:image/jpeg;base64,${readFileSync(`./public/uploads/${name}.jpg`, 'base64')}`
+    // }
 
 export const unzip = (filename) => {
 
-    exec(`unzip ${path.resolve()}/uploads/${filename} -d ${path.resolve()}/uploads`, (error, sdout, stderr ) => {
+    exec(`unzip ${path.resolve()}/uploads/${filename} -d ${path.resolve()}/uploads`, (error, sdout, stderr) => {
 
-        if(error){
+        if (error) {
             console.log(`error: ${error}`)
             return
         }
-        if(stderr){
+        if (stderr) {
             console.log(`stderr: ${stderr}`)
             return
         }
 
         // console.log(sdout)
     })
+}
+
+export const checkUrl = async(url) => {
+    try {
+        await axios.head(url)
+        return true
+    } catch (error) {
+        return false
+    }
 }

@@ -116,7 +116,7 @@ export default {
   },
   mounted() {
     console.log("mounted");
-    document.title = 'Importação'
+    document.title = "Importação";
     // this.handleCreateProducts()
   },
   methods: {
@@ -191,6 +191,7 @@ export default {
         const { data } = error.response;
         // console.log('erro', error.message);
         alert(data.msg);
+        this.disabledButton = false;
         console.log({ error });
       }
 

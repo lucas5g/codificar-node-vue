@@ -1,12 +1,26 @@
 import csvtojson from 'csvtojson'
 import axios from 'axios'
-import { unzip, loadImage, imageBase64 } from '../helpers/index.mjs'
+import { unzip, loadImage, imageBase64, checkUrl } from '../helpers/index.mjs'
 class ProductController {
 
     static async load(req, res) {
         const files = req.files
+        const { baseUrl } = req.body
+            // console.log({ baseUrl })
 
-        // return res.json(req.files)
+        const existUrl = await checkUrl(baseUrl)
+
+        if (!existUrl) {
+            return res
+                .status(404)
+                .json({
+                    msg: 'URL do Projeto não encontrada.'
+                })
+        }
+
+
+        // return
+
         //@ts-ignore
         if (!('csv' in files)) {
             return res
@@ -71,13 +85,13 @@ class ProductController {
 
     }
 
-    static async create(req, res){
-        
+    static async create(req, res) {
+
         // return res.json({body: req.body})
         const { product, baseUrl } = req.body
 
 
-        if(baseUrl === ''){
+        if (baseUrl === '') {
             res.json({
                 msg: 'Define a baseUrl do Projeto'
             })

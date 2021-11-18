@@ -47,6 +47,8 @@ class BotController {
         this.sendMessageRocket('@lucas.sousa', 'O Bot tá ok :smile:')
     }
 
+    // static async 
+
     static async sendMessageRocket(channel, text) {
         // console.log({ channel, text })
         // return
