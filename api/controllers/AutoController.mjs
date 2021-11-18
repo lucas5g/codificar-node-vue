@@ -26,7 +26,7 @@ class AutoController {
             git push &&
             ssh devmarketplace "cd /var/www/codificar/codificar-node-vue &&
             sudo git pull &&
-            sudo npm yarn build && 
+            sudo npm run  build && 
             pm2 restart 0"        
         `
         return command
