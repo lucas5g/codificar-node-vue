@@ -55,19 +55,21 @@ export const pathname = () => {
     // }
 
 export const unzip = (filename) => {
+    // const command = `unzip ${path.resolve()}/uploads/"${filename}" -d ${path.resolve()}/uploads/ && mv ${filename}`
+    // const command = `unzip ${path.resolve()}/uploads/"${filename}"`
+    const folder = filename.replace('.zip','')
 
-    exec(`unzip ${path.resolve()}/uploads/${filename} -d ${path.resolve()}/uploads`, (error, sdout, stderr) => {
+     const command = `unzip -j ${path.resolve()}/uploads/${filename} -d ${path.resolve()}/uploads`
+    
+    exec(command, (error, stdout, stderr) => {
 
         if (error) {
             console.log(`error: ${error}`)
             return
         }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`)
-            return
-        }
-
-        // console.log(sdout)
+     
+        console.log(`stderr: ${stderr}`)
+        console.log(stdout)
     })
 }
 

@@ -5,7 +5,7 @@ export const storage = multer.diskStorage({
     destination: path.resolve() + '/uploads',
     filename: (req, file, cb) => {
         // const {baseUrl} = req.file
-        cb(null, `${file.originalname}`)
+        cb(null, `${file.originalname.replace(' ','_')}`)
     }
 
 })

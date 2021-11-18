@@ -5,17 +5,11 @@ class AutoController {
         return command
     }
 
-    static gitPull() {
-        const command = 'sudo git pull && sudo npm run  build'
-        return this.path({ command })
+
+    static version_test(){
+        
     }
 
-    static restart() {
-        console.log('http://dev.appmarketplace.com.br:8000')
-
-        const command = 'sudo git pull && sudo npm install && sudo npm run build &&  pm2 restart 0 --update-env'
-        return this.path({ command })
-    }
 
     static push(message) {
 
@@ -43,6 +37,17 @@ class AutoController {
         return `cd ~/automation/marketplace-web && ./auto version versionmarketplace pull_update`
     }
 
+    static restart() {
+        console.log('http://dev.appmarketplace.com.br:8000')
+
+        const command = 'sudo git pull && sudo npm install && sudo npm run build &&  pm2 restart 0 --update-env'
+        return this.path({ command })
+    }
+
+    static gitPull() {
+        const command = 'sudo git pull && sudo npm run  build'
+        return this.path({ command })
+    }
 
 
 }

@@ -6,7 +6,9 @@ class ProductController {
     static async load(req, res) {
         const files = req.files
         const { baseUrl } = req.body
-            // console.log({ baseUrl })
+        
+        console.log(files.csv)
+        // console.log({ baseUrl })
 
         const existUrl = await checkUrl(baseUrl)
 
@@ -17,9 +19,6 @@ class ProductController {
                     msg: 'URL do Projeto não encontrada.'
                 })
         }
-
-
-        // return
 
         //@ts-ignore
         if (!('csv' in files)) {
@@ -32,7 +31,6 @@ class ProductController {
 
         //@ts-ignore
         if (!('images' in files)) {
-
             return res
                 .status(400)
                 .json({
@@ -40,17 +38,11 @@ class ProductController {
                 })
         }
 
-        // const  images:Array files?.images
-        // const csv = files?.csv
-
-        //Extrai as imagens do zip
-        //@ts-ignore
         unzip(files.images[0].filename)
 
-        //Produtos do csv
-        //@ts-ignore
-
         const productsCsv = await csvtojson().fromFile(files.csv[0].path)
+
+        res.json(productsCsv)
 
         //Retorna dos produtos
         const products = productsCsv.map(row => {
