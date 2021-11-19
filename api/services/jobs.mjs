@@ -1,3 +1,4 @@
+import axios from 'axios';
 import cron from 'node-cron'
 import { AutoController } from '../controllers/AutoController.mjs';
 import { BotController } from "../controllers/BotController.mjs";
@@ -17,8 +18,9 @@ cron.schedule('0 26 16 * * 1-5', () => {
 
 (async() => {
 
-    const images = 'BASES E CARREGADORES.zip'
 
-    console.log(images.replace(/ /g, '_'))
+
+
+
 
 })()

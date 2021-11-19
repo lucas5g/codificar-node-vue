@@ -1,7 +1,7 @@
 import moment from "moment"
 import { apiRedmine } from "../services/api.mjs"
 import dotenv from 'dotenv'
-import { apiRocket } from "../services/api.mjs"
+import { apiRocket, apiGit } from "../services/api.mjs"
 dotenv.config()
 
 
@@ -47,7 +47,6 @@ class BotController {
         this.sendMessageRocket('@lucas.sousa', 'O Bot tá ok :smile:')
     }
 
-    // static async 
 
     static async sendMessageRocket(channel, text) {
         // console.log({ channel, text })
@@ -75,6 +74,26 @@ class BotController {
         }
     }
 
+    static async autoTest() {
+
+        //TODO
+        /**
+         * 1 Last commit
+         */
+
+        const { data } = await apiGit.get('/')
+
+        console.log(data)
+
+
+        //2 Verificar se no banco qual foi o último commit
+
+        //3 Atualizar a version
+
+        //4 Rodar o test
+
+        //5 caso tenha erros, retornar url dos prints dos erros
+    }
 
 
 

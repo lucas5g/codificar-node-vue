@@ -16,4 +16,15 @@ export const apiRocket = axios.create({
     baseURL: 'https://chat.codificar.com.br/api/v1'
 })
 
+export const apiGit = axios.create({
+    baseURL: process.env.GIT_URL,
+    headers: {
+        Authorization: process.env.GIT_KEY
+    },
+    params: {
+        ref_name: 'version'
+    }
+
+})
+
 // export const api =

@@ -9,14 +9,14 @@ import { AutoController } from "../controllers/AutoController.mjs";
     const command = args[0]
     const message = args[1]
 
- 
+
     // let commandRun = ''
     // //traducao do comando
     // switch(command){
     //     case 'version':
     //         commandRun = 'versionGitPullRunTest'
     //         break;
-            
+
     //     default:
     //         commandRun = command
     // }
@@ -41,7 +41,7 @@ import { AutoController } from "../controllers/AutoController.mjs";
 
         /** */
     } catch (err) {
-        console.log(commandRun)
+        console.log(command)
         console.log(err)
     }
 })()
