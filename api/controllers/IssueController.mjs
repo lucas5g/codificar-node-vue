@@ -11,13 +11,15 @@ class IssueController {
         // return
         const { data } = await apiRedmine.get(`/issues.json?sort=status`)
 
+        // return res.json(data)
+
         const issues = data.issues.map(issue => {
             const obj = {
                     url: `https://redmine.codificar.com.br/issues/${issue.id}`,
                     subject: issue.subject,
                     status: issue.status.name,
                     id: issue.id,
-                    assigned_to: issue.assigned_to.name
+                    assigned_to: issue.assigned_to && issue.assigned_to.name
                         // created_on: issue.created_on,
                         // updated_on: issue.updated_on
                 }
