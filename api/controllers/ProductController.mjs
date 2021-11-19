@@ -6,8 +6,8 @@ class ProductController {
     static async load(req, res) {
         const files = req.files
         const { baseUrl } = req.body
-        
-        console.log(files.csv)
+
+        // console.log(files.csv)
         // console.log({ baseUrl })
 
         const existUrl = await checkUrl(baseUrl)
@@ -42,7 +42,7 @@ class ProductController {
 
         const productsCsv = await csvtojson().fromFile(files.csv[0].path)
 
-        res.json(productsCsv)
+        // res.json(productsCsv)
 
         //Retorna dos produtos
         const products = productsCsv.map(row => {
