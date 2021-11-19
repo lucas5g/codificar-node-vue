@@ -23,7 +23,7 @@ class ProductController {
         //@ts-ignore
         if (!('csv' in files)) {
             return res
-                .status(400)
+                .status(404)
                 .json({
                     msg: 'Envie os Produtos no arquivo .CSV'
                 })
@@ -41,8 +41,17 @@ class ProductController {
         unzip(files.images[0].filename)
 
         const productsCsv = await csvtojson().fromFile(files.csv[0].path)
+            // console.log(productsCsv[0])
+            // console.log(productsCsv[0].hasOwnProperty('item_name'))
+        if (!productsCsv[0].hasOwnProperty('item_name')) {
+            return res
+                .status(404)
+                .json({
+                    msg: `O CSV deve está configurado para separar os campos por vírgula ","
+                         \n\nAbra o CSV no bloco de notas e verifique como esta a separação dos campos`
+                })
+        }
 
-        // res.json(productsCsv)
 
         //Retorna dos produtos
         const products = productsCsv.map(row => {
@@ -59,7 +68,9 @@ class ProductController {
                     item_location: row.item_location,
                     item_package_unit: row.item_package_unit,
                     item_price_per_unit: row.item_price_per_unit,
-                    image_content: loadImage(row.item_name)
+                    image_content: loadImage(row.item_name),
+                    timeslot_vendor_option: row.timeslot_vendor_option
+
                 },
                 list_ingredients_option: '0',
                 Vendoritem_ingredient_type_list: []
@@ -98,6 +109,7 @@ class ProductController {
 
         const { data } = await axios.post(`${baseUrl}/api/v3/product/create.html`, product, { maxBodyLength: 20000000 })
 
+        console.log(data.data)
 
         if (data.httpcode === '407') {
             return res.json({
