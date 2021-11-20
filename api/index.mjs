@@ -5,6 +5,9 @@ import path from 'path'
 
 import { router as routesIssues } from './routes/issueRoutes.mjs'
 import { router as routesProducts } from './routes/productRoutes.mjs'
+
+import conn from './database/conn.js'
+
 import './services/jobs.mjs'
 
 
@@ -22,6 +25,12 @@ app.use('/issues', express.static(path.resolve() + '/dist/'))
 app.use('/uploads', express.static(path.resolve() + '/uploads/'))
 
 
+app.listen(process.env.PORT, () => { console.log(process.env.BASE_URL) })
 
-const port = '8000'
-app.listen(port, () => { console.log('http://localhost:' + port) })
+// conn
+//     .sync()
+//     // .sync({ force: true })
+//     .then(() => [
+
+//     ])
+//     .catch((error) => console.log(error))

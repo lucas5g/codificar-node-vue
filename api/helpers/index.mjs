@@ -57,17 +57,17 @@ export const pathname = () => {
 export const unzip = (filename) => {
     // const command = `unzip ${path.resolve()}/uploads/"${filename}" -d ${path.resolve()}/uploads/ && mv ${filename}`
     // const command = `unzip ${path.resolve()}/uploads/"${filename}"`
-    const folder = filename.replace('.zip','')
+    const folder = filename.replace('.zip', '')
 
-     const command = `unzip -j ${path.resolve()}/uploads/${filename} -d ${path.resolve()}/uploads`
-    
+    const command = `unzip -j ${path.resolve()}/uploads/${filename} -d ${path.resolve()}/uploads`
+
     exec(command, (error, stdout, stderr) => {
 
         if (error) {
             console.log(`error: ${error}`)
             return
         }
-     
+
         console.log(`stderr: ${stderr}`)
         console.log(stdout)
     })
@@ -80,4 +80,17 @@ export const checkUrl = async(url) => {
     } catch (error) {
         return false
     }
+}
+
+export const commandFunction = (command) => {
+
+    exec(command, (error, stdout, stderr) => {
+        if (error) {
+            console.error(`exec error: ${error}`);
+            return false;
+        }
+        console.log(`stdout: ${stdout}`);
+        console.error(`stderr: ${stderr}`);
+        return true
+    });
 }
