@@ -6,7 +6,7 @@ import path from 'path'
 import { router as routesIssues } from './routes/issueRoutes.mjs'
 import { router as routesProducts } from './routes/productRoutes.mjs'
 
-import conn from './database/conn.js'
+// import conn from './database/conn.js'
 
 import './services/jobs.mjs'
 
@@ -26,6 +26,7 @@ app.use('/uploads', express.static(path.resolve() + '/uploads/'))
 
 
 app.listen(process.env.PORT, () => { console.log(process.env.BASE_URL) })
+
 
 // conn
 //     .sync()

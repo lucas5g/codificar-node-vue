@@ -2,7 +2,7 @@ import moment from "moment"
 import { apiRedmine } from "../services/api.mjs"
 import dotenv from 'dotenv'
 import { apiRocket, apiGit } from "../services/api.mjs"
-import Commit from "../Model/Commit.js"
+// import Commit from "../Model/Commit.js"
 import { commandFunction } from "../helpers/index.mjs"
 dotenv.config()
 
@@ -83,51 +83,51 @@ class BotController {
          * 1 Last commit
          */
 
-        const { data } = await apiGit.get('/')
+        // const { data } = await apiGit.get('/')
 
-        const { short_id, title, author_name } = data[0]
+        // const { short_id, title, author_name } = data[0]
 
-        const lastCommit = { short_id, title, author_name }
+        // const lastCommit = { short_id, title, author_name }
 
         // console.log(lastCommit)
         //2 Verificar se no banco qual foi o último commit
-        const findCommit = await Commit.findOne({ lastCommit, raw: true })
+        // const findCommit = await Commit.findOne({ lastCommit, raw: true })
 
         //Se o commit for mesmo, não rodar o test
         // if (findCommit) {
         //     console.log('Não tem commit mais recente')
         //     return
         // }
-        await Commit.truncate()
-        await Commit.create(lastCommit)
+        // await Commit.truncate()
+        // await Commit.create(lastCommit)
 
         //3 Atualizar a version
-        const commandUpdateVersion = `
-            ssh versionaplicativoderestaurante "
-            cd /var/www/versionaplicativoderestaurante/current &&
-            sudo git pull"
-        `
-            // console.log('Atualizando a version ')
-            // const resultUpdateVersion = await commandFunction({ command })
-            // if (!resultUpdateVersion) {
-            //     console.log('Não foi possível atualizar a version')
-            //     return
-            // }
+        // const commandUpdateVersion = `
+        //     ssh versionaplicativoderestaurante "
+        //     cd /var/www/versionaplicativoderestaurante/current &&
+        //     sudo git pull"
+        // `
+        // console.log('Atualizando a version ')
+        // const resultUpdateVersion = await commandFunction({ command })
+        // if (!resultUpdateVersion) {
+        //     console.log('Não foi possível atualizar a version')
+        //     return
+        // }
 
 
         //4 Rodar o test
-        const commandRunTest = `
-            ssh devmarketplace "
-            cd /var/www/codificar/test/ &&
-            npm run test"
-        `
+        // const commandRunTest = `
+        //     ssh devmarketplace "
+        //     cd /var/www/codificar/test/ &&
+        //     npm run test"
+        // `
 
         // const resultRunTest = await commandFunction(commandRunTest)
-        console.log('Fim do test')
-            // if (!resultRunTest) {
-            //     console.log('Não foi possível atualizar a version')
-            //     return
-            // }
+        // console.log('Fim do test')
+        // if (!resultRunTest) {
+        //     console.log('Não foi possível atualizar a version')
+        //     return
+        // }
 
         //5 caso tenha erros, retornar url dos prints dos erros
     }

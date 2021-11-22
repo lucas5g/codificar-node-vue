@@ -10,7 +10,7 @@
             v-for="issue in issues"
             :key="issue.id"
           >
-            {{ issue.subject }} - {{ issue.id }} - {{issue.assigned_to === undefined && 'Quem pode pegar?'}}
+            {{ issue.subject }} - {{ issue.id }} {{issue.assigned_to === undefined ? ' - Quem pode pegar?':''}}
           </a>
         </div>
       </div>
