@@ -5,26 +5,18 @@
         <div class="col">Carregando...</div>
       </div>
     </div>
-    <div class="container-fluid" v-else @click="comboFunction">
-      <div class="row mb-3 d-flex justify-content-end">
-        <div class="col-md-4">
-          <!-- <h2>Issues ({{issues.length}})</h2> -->
-          <select
-            class="form-select"
-            style="font-size: 28px; cursor: pointer"
-            @change="issuesFilter"
-            v-model="assignedSelected"
-            name="assignedSelected"
-          >
-            <option value="">Todos ({{ issues.length }})</option>
-            <option :value="dev" v-for="(dev, index) in devs" :key="index">
-              {{ dev }} ({{
-                issues.filter((issue) => issue.assigned_to === dev).length
-              }})
-            </option>
-          </select>
-        </div>
-      </div>
+    <div class="container-fluid" v-else @click="{{}}">
+      <!-- <SelectFilter :options="trackers" name="Tipos" /> -->
+      <SelectFilter
+        :options="assigneds"
+        name="Responsáveis"
+        :filter="issuesFilter"
+        :issues="issues"
+        filterBy="assigned_to"
+        v-model="assignedSelected"
+
+
+      />
 
       <div class="row">
         <IssuesColumn v-bind:issues="issuesNew" status="Novas" />
@@ -35,21 +27,23 @@
         <IssuesColumn v-bind:issues="issuesHomologation" status="Homologação" />
       </div>
     </div>
+    <!-- end Container-fluid -->
   </div>
 </template>
 
 <script>
 import { api } from "../services/api";
 import IssuesColumn from "../components/IssuesColumn.vue";
+import SelectFilter from "../components/SelectFilter.vue";
 
 export default {
   name: "Issues",
   components: {
     IssuesColumn,
+    SelectFilter,
   },
   data() {
     return {
-      message: "test",
       issuesNew: [],
       issuesPending: [],
       issuesReopened: [],
@@ -58,30 +52,26 @@ export default {
       issuesHomologation: [],
       issuesAssigned: [],
       assignedSelected: "",
+      assigneds: [],
       issues: [],
-      devs: [
-        "Augusto Alves",
-        "Gabriel Viegas",
-        "Maurício  da Silva Souza",
-        "Randler Ferraz Almeida",
-        "Wallace Souza",
-      ],
+      trackers: [],
     };
   },
   created() {
     document.title = "Issues - Redmine";
-    this.loadIssues();
+    this.load();
     // this.issuesFilter();
   },
   methods: {
-    comboFunction() {
-      this.loadIssues();
-      this.issuesFilter();
-    },
+    // comboFunction() {
+    //   this.load();
+    //   this.issuesFilter();
+    // },
     issuesFilter() {
-      // this.loadIssues()
-      // console.log("carregouu");
 
+        console.log(this.assignedSelected)
+        // console.log(this.issuesAssigned)
+        
       this.issuesAssigned =
         this.assignedSelected === ""
           ? this.issues
@@ -108,14 +98,16 @@ export default {
         (issue) => issue.status === "Homologação"
       );
 
-      // return 'test'
+      /**/
     },
-    async loadIssues() {
+    async load() {
       console.log("carregou");
       try {
         const { data } = await api.get("/issues");
         // console.log(data)
-        this.issues = data;
+        this.issues = data.issues;
+        (this.assigneds = data.assigneds), (this.trackers = data.trackers);
+
         this.issuesFilter();
       } catch (error) {
         console.log({ error });
