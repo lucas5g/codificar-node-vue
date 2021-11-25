@@ -10,7 +10,7 @@ const baseUrl = () => {
     //     return 'http://127.0.0.1:8081'
     // }
 
-    return 'http://localhost:3000'
+    return 'http://localhost:8000/api'
 
 }
 

@@ -3,6 +3,17 @@ import path from 'path'
 import { exec } from 'child_process'
 import axios from 'axios'
 
+
+export const distinctArrayObj = ( {arrayObj, filter} ) => {
+
+    const arrayFilter = arrayObj.map( result => result[filter]).filter( result => result !== undefined)
+
+    const arrayDistinct = [...new Map(arrayFilter.map( result => [result.name, result])).values()]
+
+    const arraySort = arrayDistinct.sort((a, b) => a.name.localeCompare(b.name))
+    return arraySort
+}
+
 export const imageBase64 = (file) => {
     const pathUploads = `${path.resolve()}/uploads/${file}`
     try {

@@ -73,8 +73,8 @@ export default {
     document.title = "Issues - Redmine";
     // this.getAll()
     this.getIssues();
-    this.getAssigneds();
-    this.getTrackers();
+    // this.getAssigneds();
+    // this.getTrackers();
 
     // this.issuesFilter();
   },
@@ -127,7 +127,9 @@ export default {
       try {
         const { data } = await api.get("/issues");
         console.log(data)
-        this.issues = data;
+        this.issues = data.issues;
+        this.assigneds = data.assigneds
+        this.trackers = data.trackers
         this.filter();
       } catch (error) {
         console.log({ error });
@@ -137,15 +139,15 @@ export default {
         }
       }
     },
-    async getAssigneds() {
-      const { data } = await api.get("/assigneds");
-      this.assigneds = data;
-    },
-    async getTrackers() {
-      const { data } = await api.get("/trackers");
-      console.log(data);
-      this.trackers = data;
-    },
+    // async getAssigneds() {
+    //   const { data } = await api.get("/assigneds");
+    //   this.assigneds = data;
+    // },
+    // async getTrackers() {
+    //   const { data } = await api.get("/trackers");
+    //   console.log(data);
+    //   this.trackers = data;
+    // },
   },
 };
 </script>

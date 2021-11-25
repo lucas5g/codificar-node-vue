@@ -31,9 +31,8 @@ export default {
 
   created() {
     // // console.log(this.selected);
-    // console.log(this.issues)
-    console.log(this.filterBy)
-    console.log(this.issues[0][this.filterBy])
+    console.log(this.options)
+    console.log(this.issues)
   },
   methods:{
       getAll(){
