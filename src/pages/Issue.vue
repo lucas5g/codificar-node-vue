@@ -5,19 +5,30 @@
         <div class="col">Carregando...</div>
       </div>
     </div>
-    <div class="container-fluid" v-else @click="{{}}">
-      <!-- <SelectFilter :options="trackers" name="Tipos" /> -->
+    <div
+      class="container-fluid"
+      v-else
+      @click="
+        {
+          {
+          }
+        }
+      "
+    >
+      <SelectFilter
+        :options="trackers"
+        name="Tipos"
+        :issues="issues"
+        filterBy="tracker"
+        v-model="trackerSelected"
+      />
       <SelectFilter
         :options="assigneds"
         name="Responsáveis"
-        :filter="issuesFilter"
         :issues="issues"
         filterBy="assigned_to"
         v-model="assignedSelected"
-
-
       />
-
       <div class="row">
         <IssuesColumn v-bind:issues="issuesNew" status="Novas" />
         <IssuesColumn v-bind:issues="issuesPending" status="Pendente" />
@@ -44,80 +55,96 @@ export default {
   },
   data() {
     return {
+      assigneds: [],
       issuesNew: [],
       issuesPending: [],
       issuesReopened: [],
       issuesInprogress: [],
       issuesResolved: [],
       issuesHomologation: [],
-      issuesAssigned: [],
+      issuesFilter: [],
       assignedSelected: "",
-      assigneds: [],
       issues: [],
       trackers: [],
+      trackerSelected: "",
     };
   },
   created() {
     document.title = "Issues - Redmine";
-    this.load();
+    // this.getAll()
+    this.getIssues();
+    this.getAssigneds();
+    this.getTrackers();
+
     // this.issuesFilter();
   },
   methods: {
-    // comboFunction() {
-    //   this.load();
-    //   this.issuesFilter();
-    // },
-    issuesFilter() {
+    getAll() {
+      this.getIssues();
+      this.filter();
 
-        console.log(this.assignedSelected)
-        // console.log(this.issuesAssigned)
-        
-      this.issuesAssigned =
+      //   console.log('load all')
+      //   this.getAssigneds();
+      //   console.log(this.issues[0])
+    },
+
+    filter() {
+      console.log(this.trackerSelected);
+      this.issuesFilter =
         this.assignedSelected === ""
           ? this.issues
           : this.issues.filter(
               (issue) => issue.assigned_to === this.assignedSelected
             );
 
-      this.issuesNew = this.issuesAssigned.filter(
+      this.issuesFilter =
+        this.trackerSelected === ""
+          ? this.issuesFilter
+          : this.issuesFilter.filter(
+              (issue) => issue.tracker === this.trackerSelected
+            );
+
+      this.issuesNew = this.issuesFilter.filter(
         (issue) => issue.status === "Nova"
       );
-      this.issuesPending = this.issuesAssigned.filter(
+      this.issuesPending = this.issuesFilter.filter(
         (issue) => issue.status === "Pendente"
       );
-      this.issuesReopened = this.issuesAssigned.filter(
+      this.issuesReopened = this.issuesFilter.filter(
         (issue) => issue.status === "Reaberta"
       );
-      this.issuesInprogress = this.issuesAssigned.filter(
+      this.issuesInprogress = this.issuesFilter.filter(
         (issue) => issue.status === "Em andamento"
       );
-      this.issuesResolved = this.issuesAssigned.filter(
+      this.issuesResolved = this.issuesFilter.filter(
         (issue) => issue.status === "Resolvida"
       );
-      this.issuesHomologation = this.issuesAssigned.filter(
+      this.issuesHomologation = this.issuesFilter.filter(
         (issue) => issue.status === "Homologação"
       );
-
-      /**/
     },
-    async load() {
-      console.log("carregou");
+    async getIssues() {
       try {
         const { data } = await api.get("/issues");
-        // console.log(data)
-        this.issues = data.issues;
-        (this.assigneds = data.assigneds), (this.trackers = data.trackers);
-
-        this.issuesFilter();
+        console.log(data)
+        this.issues = data;
+        this.filter();
       } catch (error) {
         console.log({ error });
         const { message } = error;
-        // console.log(err.message)
         if (message) {
-          alert("Erro ao conectar na API de ISSUES");
-          // window.location.reload()
+        //   alert("Erro ao conectar na API de ISSUES");
         }
       }
+    },
+    async getAssigneds() {
+      const { data } = await api.get("/assigneds");
+      this.assigneds = data;
+    },
+    async getTrackers() {
+      const { data } = await api.get("/trackers");
+      console.log(data);
+      this.trackers = data;
     },
   },
 };

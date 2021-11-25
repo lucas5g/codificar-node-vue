@@ -18,6 +18,11 @@ app.use(express.json())
 
 app.use('/api/issues', routesIssues)
 app.use('/api/products', routesProducts)
+app.use('/api/trackers', (req, res) => {
+    res.json({
+        msg: 'test'
+    })
+})
 
 app.use('/', express.static(path.resolve() + '/dist/'))
 app.use('/importacao', express.static(path.resolve() + '/dist/'))

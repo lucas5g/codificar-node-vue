@@ -1,0 +1,40 @@
+{
+    "issues": [{
+            "url": "https://redmine.codificar.com.br/issues/22443",
+            "subject": "Configuração de Data Center",
+            "status": "Nova",
+            "id": 22443,
+            "assigned_to": "Leonardo Serra",
+            "tracker": "Suporte",
+            "priority": "Normal"
+        },
+        {
+            "url": "https://redmine.codificar.com.br/issues/22441",
+            "subject": "Configuração de Data Center",
+            "status": "Nova",
+            "id": 22441,
+            "assigned_to": "Leonardo Serra",
+            "tracker": "Suporte",
+            "priority": "Normal"
+        },
+        {
+            "url": "https://redmine.codificar.com.br/issues/22483",
+            "subject": "OPÇÃO DE LOJA NOVA COM:  \"Em breve no App\"",
+            "status": "Nova",
+            "id": 22483,
+            "assigned_to": "Joa Farias",
+            "tracker": "Orçamento",
+            "priority": "Normal"
+        },
+        {
+            "url": "https://redmine.codificar.com.br/issues/22484",
+            "subject": "Funcionalidade PEDIDO ENTREGUE, aparecer de forma automática no Painel ",
+            "status": "Nova",
+            "id": 22484,
+            "tracker": "Funcionalidade",
+            "priority": "Alta"
+        }
+    ],
+    "assigneds": [],
+    "trackers": []
+}

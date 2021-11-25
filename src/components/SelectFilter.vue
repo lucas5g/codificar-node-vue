@@ -4,13 +4,13 @@
       <select
         class="form-select"
         style="font-size: 28px; cursor: pointer"
-        @change="filter"
         @input="$emit('input', $event.target.value)"
+        @change="getAll"
       >
         <option value="">{{ name }} ({{ issues.length }})</option>
-        <option :value="option" v-for="(option, index) in options" :key="index">
-          {{ option }} ({{
-            issues.filter((issue) => issue[filterBy] === option).length
+        <option :value="option.name" v-for="(option, index) in options" :key="index">
+          {{ option.name }} ({{
+            issues.filter((issue) => issue[filterBy] === option.name).length
           }})
         </option>
       </select>
@@ -30,8 +30,16 @@ export default {
   },
 
   created() {
-    console.log(this.selected);
+    // // console.log(this.selected);
+    // console.log(this.issues)
+    console.log(this.filterBy)
+    console.log(this.issues[0][this.filterBy])
   },
+  methods:{
+      getAll(){
+          this.$parent.getAll()
+      }
+  }
 };
 </script>
 

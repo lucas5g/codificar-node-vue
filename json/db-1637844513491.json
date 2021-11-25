@@ -1,0 +1,261 @@
+{
+  "issues": [
+    {
+      "url": "https://redmine.codificar.com.br/issues/22443",
+      "subject": "Configuração de Data Center",
+      "status": "Nova",
+      "id": 22443,
+      "assigned_to": "Leonardo Serra",
+      "tracker": "Suporte",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22441",
+      "subject": "Configuração de Data Center",
+      "status": "Nova",
+      "id": 22441,
+      "assigned_to": "Leonardo Serra",
+      "tracker": "Suporte",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22483",
+      "subject": "OPÇÃO DE LOJA NOVA COM:  \"Em breve no App\"",
+      "status": "Nova",
+      "id": 22483,
+      "assigned_to": "Joa Farias",
+      "tracker": "Orçamento",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22484",
+      "subject": "Funcionalidade PEDIDO ENTREGUE, aparecer de forma automática no Painel ",
+      "status": "Nova",
+      "id": 22484,
+      "tracker": "Funcionalidade",
+      "priority": "Alta"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22079",
+      "subject": "Implantar Plugin de Refresh na lista de pedidos",
+      "status": "Nova",
+      "id": 22079,
+      "assigned_to": "Gabriel Viegas",
+      "tracker": "Orçamento",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22515",
+      "subject": "[PORTAL/ADMNI] - Adicionar input para configurar a cor do botão",
+      "status": "Nova",
+      "id": 22515,
+      "assigned_to": "Maurício  da Silva Souza",
+      "tracker": "Funcionalidade",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22518",
+      "subject": "[APP] - Ajustar texto de parcelamento",
+      "status": "Nova",
+      "id": 22518,
+      "assigned_to": "Wallace Souza",
+      "tracker": "Ajuste",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22130",
+      "subject": "[ADMIN VENDOR] - Mapa com lista dos bairros ",
+      "status": "Nova",
+      "id": 22130,
+      "assigned_to": "Maurício  da Silva Souza",
+      "tracker": "Funcionalidade",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22523",
+      "subject": "[APP] - Retornar somente os banners cadastrados no vendor",
+      "status": "Nova",
+      "id": 22523,
+      "tracker": "Defeito",
+      "priority": "Alta"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22462",
+      "subject": "Localização Padrão para ser copiada dentro do link de cadastro de estabelecimento",
+      "status": "Nova",
+      "id": 22462,
+      "assigned_to": "Joa Farias",
+      "tracker": "Orçamento",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22495",
+      "subject": "[API] - Adicionar image cache no banner da loja",
+      "status": "Nova",
+      "id": 22495,
+      "assigned_to": "Augusto Alves",
+      "tracker": "Defeito",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22521",
+      "subject": "[PORTAL] - Cadastro da loja > Erro no cep  ",
+      "status": "Nova",
+      "id": 22521,
+      "assigned_to": "Maurício  da Silva Souza",
+      "tracker": "Defeito",
+      "priority": "Imediata"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22436",
+      "subject": "[VENDOR] - Ajuste no menu de relatório",
+      "status": "Nova",
+      "id": 22436,
+      "assigned_to": "Wallace Souza",
+      "tracker": "Ajuste",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22517",
+      "subject": "[ADMIN] - Organizar os campos de cores",
+      "status": "Nova",
+      "id": 22517,
+      "assigned_to": "Maurício  da Silva Souza",
+      "tracker": "Ajuste",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22396",
+      "subject": "Devolução do pedido",
+      "status": "Em andamento",
+      "id": 22396,
+      "assigned_to": "Wallace Souza",
+      "tracker": "Funcionalidade",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/21928",
+      "subject": "[PORTAL / MOLDE SITE / APP] Habilitar Pagamento via pix",
+      "status": "Em andamento",
+      "id": 21928,
+      "assigned_to": "Randler Ferraz Almeida",
+      "tracker": "Funcionalidade",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/21220",
+      "subject": "[Story] Entregadores próprios do Estabelecimento ",
+      "status": "Em andamento",
+      "id": 21220,
+      "assigned_to": "Augusto Alves",
+      "tracker": "Funcionalidade",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/18868",
+      "subject": "Tabela de cadastramento de produtos",
+      "status": "Pendente",
+      "id": 18868,
+      "assigned_to": "Lucas Sousa",
+      "tracker": "Funcionalidade",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22490",
+      "subject": "[APP] - Erro ao selecionar a quantidade de variações",
+      "status": "Pendente",
+      "id": 22490,
+      "assigned_to": "Randler Ferraz Almeida",
+      "tracker": "Defeito",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22281",
+      "subject": "[PORTAL] - Ajustes no checkout",
+      "status": "Pendente",
+      "id": 22281,
+      "assigned_to": "Randler Ferraz Almeida",
+      "tracker": "Defeito",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22306",
+      "subject": "[SITE] - Erro no carrinho",
+      "status": "Resolvida",
+      "id": 22306,
+      "assigned_to": "Randler Ferraz Almeida",
+      "tracker": "Defeito",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/20925",
+      "subject": "Deixar o site responsivo",
+      "status": "Homologação",
+      "id": 20925,
+      "assigned_to": "Wallace Souza",
+      "tracker": "Funcionalidade",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/20838",
+      "subject": "Cadastro Passo a Passo do Vendor",
+      "status": "Reaberta",
+      "id": 20838,
+      "assigned_to": "Maurício  da Silva Souza",
+      "tracker": "Funcionalidade",
+      "priority": "Normal"
+    },
+    {
+      "url": "https://redmine.codificar.com.br/issues/22339",
+      "subject": "Upload de Receita / Documentos no checkout",
+      "status": "Reaberta",
+      "id": 22339,
+      "assigned_to": "Gabriel Viegas",
+      "tracker": "Funcionalidade",
+      "priority": "Alta"
+    }
+  ],
+  "assigneds": [
+    {
+      "name": "Augusto Alves"
+    },
+    {
+      "name": "Gabriel Viegas"
+    },
+    {
+      "name": "Joa Farias"
+    },
+    {
+      "name": "Leonardo Serra"
+    },
+    {
+      "name": "Lucas Sousa"
+    },
+    {
+      "name": "Maurício  da Silva Souza"
+    },
+    {
+      "name": "Randler Ferraz Almeida"
+    },
+    {
+      "name": "Wallace Souza"
+    }
+  ],
+  "trackers": [
+    {
+      "name": "Ajuste"
+    },
+    {
+      "name": "Defeito"
+    },
+    {
+      "name": "Funcionalidade"
+    },
+    {
+      "name": "Orçamento"
+    },
+    {
+      "name": "Suporte"
+    }
+  ]
+}
