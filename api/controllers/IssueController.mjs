@@ -7,25 +7,26 @@ class IssueController {
     static async index(req, res) {
 
         const { data } = await apiRedmine.get(`/issues.json?sort=status`)
-        // return res.json(data)
+            // return res.json(data)
         const issues = data.issues.map(issue => {
-                return {
-                    url: `https://redmine.codificar.com.br/issues/${issue.id}`,
-                    subject: issue.subject,
-                    status: issue.status.name,
-                    id: issue.id,
-                    assigned_to: issue.assigned_to && issue.assigned_to,
-                    tracker: issue.tracker,
-                    priority: issue.priority.name,
-                    project: issue.project
-                }
-            })
+            return {
+                url: `https://redmine.codificar.com.br/issues/${issue.id}`,
+                subject: issue.subject,
+                status: issue.status.name,
+                id: issue.id,
+                assigned_to: issue.assigned_to && issue.assigned_to,
+                tracker: issue.tracker,
+                priority: issue.priority.name,
+                project: issue.project
+            }
+        })
 
-        const trackers = distinctArrayObj({arrayObj: issues, filter: 'tracker'})
-        const assigneds = distinctArrayObj({arrayObj: issues, filter: 'assigned_to'})
-    
+        const trackers = distinctArrayObj({ arrayObj: issues, filter: 'tracker' })
+        const assigneds = distinctArrayObj({ arrayObj: issues, filter: 'assigned_to' })
+        const projects = distinctArrayObj({ arrayObj: issues, filter: 'project' })
+
         return res
-            .json({ issues, assigneds, trackers })
+            .json({ issues, assigneds, trackers, projects })
 
     }
 

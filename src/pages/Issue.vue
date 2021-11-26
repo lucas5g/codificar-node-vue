@@ -15,20 +15,32 @@
         }
       "
     >
-      <SelectFilter
-        :options="trackers"
-        name="Tipos"
-        :issues="issues"
-        filterBy="tracker"
-        v-model="trackerSelected"
-      />
-      <SelectFilter
-        :options="assigneds"
-        name="Responsáveis"
-        :issues="issues"
-        filterBy="assigned_to"
-        v-model="assignedSelected"
-      />
+      <div class="row d-flex justify-content-end">
+        <SelectFilter
+          :options="projects"
+          name="Projetos"
+          :issues="issues"
+          :issuesLength="issues.length"
+          filterBy="project"
+          v-model="projectSelected"
+        />
+        <SelectFilter
+          :options="trackers"
+          name="Tipos"
+          :issues="issues"
+          :issuesLength="issues.length"
+          filterBy="tracker"
+          v-model="trackerSelected"
+        />
+        <SelectFilter
+          :options="assigneds"
+          name="Responsáveis"
+          :issues="issues"
+          :issuesLength="issues.length"
+          filterBy="assigned_to"
+          v-model="assignedSelected"
+        />
+      </div>
       <div class="row">
         <IssuesColumn v-bind:issues="issuesNew" status="Novas" />
         <IssuesColumn v-bind:issues="issuesPending" status="Pendente" />
@@ -67,6 +79,8 @@ export default {
       issues: [],
       trackers: [],
       trackerSelected: "",
+      projects: [],
+      projectSelected: "",
     };
   },
   created() {
@@ -78,30 +92,43 @@ export default {
 
     // this.issuesFilter();
   },
+  mounted() {
+    //   this.filter()
+  },
   methods: {
-    getAll() {
-      this.getIssues();
-      this.filter();
-
-      //   console.log('load all')
-      //   this.getAssigneds();
-      //   console.log(this.issues[0])
-    },
-
+    // filter(filterByMe, option) {
     filter() {
-      console.log(this.trackerSelected);
+      //   console.log(this.trackerSelected);
+
+      // this.issuesFilter = filterByMe === undefined ? this.issues : this.issues.filter( issue => issue[filterByMe] && issue[filterByMe].name === filterByMe)
+      //   this.issuesFilter = this.issues.filter(
+      //     (issue) => issue[filterByMe] && issue[filterByMe].name === option
+      //   );
+
+      //   console.log({ filterByMe });
+      //   console.log(this.issues[0][filterByMe]);
+      //   console.log("filter", this.issuesFilter);
       this.issuesFilter =
         this.assignedSelected === ""
           ? this.issues
           : this.issues.filter(
-              (issue) => issue.assigned_to === this.assignedSelected
+              (issue) =>
+                issue.assigned_to &&
+                issue.assigned_to.name === this.assignedSelected
             );
 
       this.issuesFilter =
         this.trackerSelected === ""
           ? this.issuesFilter
           : this.issuesFilter.filter(
-              (issue) => issue.tracker === this.trackerSelected
+              (issue) => issue.tracker.name === this.trackerSelected
+            );
+
+      this.issuesFilter =
+        this.projectSelected === ""
+          ? this.issuesFilter
+          : this.issuesFilter.filter(
+              (issue) => issue.project.name === this.projectSelected
             );
 
       this.issuesNew = this.issuesFilter.filter(
@@ -126,28 +153,20 @@ export default {
     async getIssues() {
       try {
         const { data } = await api.get("/issues");
-        console.log(data)
+        // console.log(data)
         this.issues = data.issues;
-        this.assigneds = data.assigneds
-        this.trackers = data.trackers
+        this.assigneds = data.assigneds;
+        this.trackers = data.trackers;
+        this.projects = data.projects;
         this.filter();
       } catch (error) {
         console.log({ error });
         const { message } = error;
         if (message) {
-        //   alert("Erro ao conectar na API de ISSUES");
+          //   alert("Erro ao conectar na API de ISSUES");
         }
       }
     },
-    // async getAssigneds() {
-    //   const { data } = await api.get("/assigneds");
-    //   this.assigneds = data;
-    // },
-    // async getTrackers() {
-    //   const { data } = await api.get("/trackers");
-    //   console.log(data);
-    //   this.trackers = data;
-    // },
   },
 };
 </script>
