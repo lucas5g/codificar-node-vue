@@ -8,12 +8,7 @@
     <div
       class="container-fluid"
       v-else
-      @click="
-        {
-          {
-          }
-        }
-      "
+      @click="getIssues"
     >
       <div class="row d-flex justify-content-end">
         <SelectFilter
@@ -151,6 +146,7 @@ export default {
       );
     },
     async getIssues() {
+        console.log('load')
       try {
         const { data } = await api.get("/issues");
         // console.log(data)
