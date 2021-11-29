@@ -82,27 +82,12 @@ export default {
     document.title = "Issues - Redmine";
     // this.getAll()
     this.getIssues();
-    // this.getAssigneds();
-    // this.getTrackers();
 
-    // this.issuesFilter();
   },
-  mounted() {
-    //   this.filter()
-  },
+
   methods: {
-    // filter(filterByMe, option) {
     filter() {
-      //   console.log(this.trackerSelected);
-
-      // this.issuesFilter = filterByMe === undefined ? this.issues : this.issues.filter( issue => issue[filterByMe] && issue[filterByMe].name === filterByMe)
-      //   this.issuesFilter = this.issues.filter(
-      //     (issue) => issue[filterByMe] && issue[filterByMe].name === option
-      //   );
-
-      //   console.log({ filterByMe });
-      //   console.log(this.issues[0][filterByMe]);
-      //   console.log("filter", this.issuesFilter);
+  
       this.issuesFilter =
         this.assignedSelected === ""
           ? this.issues
@@ -146,7 +131,7 @@ export default {
       );
     },
     async getIssues() {
-        console.log('load')
+
       try {
         const { data } = await api.get("/issues");
         // console.log(data)
