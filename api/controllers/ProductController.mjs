@@ -55,7 +55,7 @@ class ProductController {
             return res
                 .status(400)
                 .json({
-                    msg: `O CSV deve conter o coluna key`
+                    msg: `O CSV deve conter a coluna key`
                 })
         }
 
