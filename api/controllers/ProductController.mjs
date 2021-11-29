@@ -45,13 +45,19 @@ class ProductController {
             // console.log(productsCsv[0].hasOwnProperty('item_name'))
         if (!productsCsv[0].hasOwnProperty('item_name')) {
             return res
-                .status(404)
+                .status(400)
                 .json({
                     msg: `O CSV deve está configurado para separar os campos por vírgula ","
                          \n\nAbra o CSV no bloco de notas e verifique como esta a separação dos campos`
                 })
         }
-
+        if (!productsCsv[0].hasOwnProperty('key')) {
+            return res
+                .status(400)
+                .json({
+                    msg: `O CSV deve conter o coluna key`
+                })
+        }
 
         //Retorna dos produtos
         const products = productsCsv.map(row => {
@@ -105,11 +111,11 @@ class ProductController {
         //add image
         product.Vendoritem.image_content = imageBase64(product.Vendoritem.item_name)
 
-        // return res.json(product)
+        // return console.log(product)
 
         const { data } = await axios.post(`${baseUrl}/api/v3/product/create.html`, product, { maxBodyLength: 20000000 })
 
-        console.log(data.data)
+        console.log('data', data.data)
 
         if (data.httpcode === '407') {
             return res.json({
