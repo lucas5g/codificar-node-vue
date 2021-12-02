@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const baseUrl = () => {
     const { host } = window.location
-    if (host === 'dev.appmarketplace.com.br:8000') {
-        return 'http://dev.appmarketplace.com.br:8000/api/'
+    if (host === 'demo.appmarketplace.com.br:8000') {
+        return 'http://demo.appmarketplace.com.br:8000/api/'
     }
 
     // if (host === '127.0.0.1:8081') {
