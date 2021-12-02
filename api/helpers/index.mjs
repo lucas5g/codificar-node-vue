@@ -4,11 +4,11 @@ import { exec } from 'child_process'
 import axios from 'axios'
 
 
-export const distinctArrayObj = ( {arrayObj, filter} ) => {
+export const distinctArrayObj = ({ arrayObj, filter }) => {
 
-    const arrayFilter = arrayObj.map( result => result[filter]).filter( result => result !== undefined)
+    const arrayFilter = arrayObj.map(result => result[filter]).filter(result => result !== undefined)
 
-    const arrayDistinct = [...new Map(arrayFilter.map( result => [result.name, result])).values()]
+    const arrayDistinct = [...new Map(arrayFilter.map(result => [result.name, result])).values()]
 
     const arraySort = arrayDistinct.sort((a, b) => a.name.localeCompare(b.name))
     return arraySort
@@ -39,7 +39,6 @@ export const loadImage = (file) => {
     const pathJpg = `${path.resolve()}/uploads/${file}.jpg`
     const pathJpeg = `${path.resolve()}/uploads/${file}.jpeg`
     const pathPng = `${path.resolve()}/uploads/${file}.png`
-    const pathNoImage = `${path.resolve()}/uploads/no-image.jpg`
 
     if (existsSync(pathJpg)) {
 
@@ -52,6 +51,9 @@ export const loadImage = (file) => {
     if (existsSync(pathPng)) {
         return `${process.env.BASE_URL}/uploads/${encodeURI(file)}.png`
     }
+    // console.log('produtos sem imagens')
+    console.log(file)
+
 
     return `${process.env.BASE_URL}/uploads/no-image.jpg`
 
