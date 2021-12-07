@@ -6,8 +6,8 @@ class AutoController {
     }
 
 
-    static version_test(){
-        
+    static version_test() {
+
     }
 
 
@@ -18,7 +18,7 @@ class AutoController {
             git add . && 
             git commit -m "${message}" && 
             git push &&
-            ssh devmarketplace "cd /var/www/codificar/codificar-node-vue &&
+            ssh versionaplicativoderestaurante "cd /var/www/codificar/codificar-node-vue &&
             sudo git pull &&
             sudo npm run  build && 
             pm2 restart 0"        

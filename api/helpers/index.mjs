@@ -30,7 +30,7 @@ export const imageBase64 = (file) => {
 
     } catch {
         console.log('file not found .png')
-        return 'data:image/jpeg;base64,' + readFileSync(path.resolve() + '/uploads/no-image.jpg', 'base64')
+        return 'data:image/jpeg;base64,' + readFileSync(path.resolve() + '/assets/no-image.jpg', 'base64')
             // return path('no-image')
     }
 }
@@ -55,7 +55,7 @@ export const loadImage = (file) => {
     console.log(file)
 
 
-    return `${process.env.BASE_URL}/uploads/no-image.jpg`
+    return `${process.env.BASE_URL}/assets/no-image.jpg`
 
 
 }

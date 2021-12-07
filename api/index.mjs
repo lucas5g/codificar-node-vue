@@ -28,6 +28,7 @@ app.use('/', express.static(path.resolve() + '/dist/'))
 app.use('/importacao', express.static(path.resolve() + '/dist/'))
 app.use('/issues', express.static(path.resolve() + '/dist/'))
 app.use('/uploads', express.static(path.resolve() + '/uploads/'))
+app.use('/assets', express.static(path.resolve() + '/src/assets/'))
 
 
 app.listen(process.env.PORT, () => { console.log(process.env.BASE_URL) })

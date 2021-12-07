@@ -19,4 +19,4 @@ export const api = axios.create({
 })
 
 console.log('BASE_URL' + baseUrl())
-console.log('18/11-12:45')
+console.log('07/12/2021 - 1056')
