@@ -115,7 +115,7 @@ class ProductController {
 
         const { data } = await axios.post(`${baseUrl}/api/v3/product/create.html`, product, { maxBodyLength: 20000000 })
 
-        console.log('data', data.data)
+        console.log('data', data)
 
         if (data.httpcode === '407') {
             return res.json({
