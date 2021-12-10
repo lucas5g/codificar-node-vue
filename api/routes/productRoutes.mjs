@@ -10,5 +10,11 @@ const router = Router()
 
 router.post('/load', multer({ storage }).fields([{ name: 'csv' }, { name: 'images' }]), ProductController.load)
 router.post('/', ProductController.create)
+router.get('/deleteImages', ProductController.deleteImages)
+router.get('/', (req, res) => {
+    res.json({
+        msg: 'router product'
+    })
+})
 
 export { router }

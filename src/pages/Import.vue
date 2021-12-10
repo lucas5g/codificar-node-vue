@@ -52,6 +52,7 @@
             Carregue as informações para mostrar a listra de produtos.<br />
             E lembre de cadastrar pelo menos um produto na planilha.
           </p>
+
           <div v-else>
             <div class="d-flex justify-content-between">
               <h5>Lista de Produtos</h5>
@@ -61,6 +62,14 @@
                 :disabled="disabledButton"
               >
                 {{ disabledButton === false ? "Cadastrar" : "Cadastrando..." }}
+              </button>
+              <button
+                class="btn btn-warning text-white"
+                title="Limpar todas as imagens no servidor. 
+                Deve ser realizado o upload dos arquivos novamente"
+                @click="clearImages"
+              >
+                Limpar Imagens
               </button>
             </div>
             <p>
@@ -120,6 +129,13 @@ export default {
     // this.handleCreateProducts()
   },
   methods: {
+    async clearImages() {
+      const { data } = await api.get("products/deleteImages");
+      // console.log(data)
+      window.alert(data.msg);
+     window.location.reload()
+      // console.log('clear')
+    },
     handleChange(event) {
       const { name } = event.target;
 

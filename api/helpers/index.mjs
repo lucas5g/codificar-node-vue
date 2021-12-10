@@ -95,7 +95,7 @@ export const checkUrl = async(url) => {
     }
 }
 
-export const commandFunction = (command) => {
+export const commandFunction = async(command) => {
 
     exec(command, (error, stdout, stderr) => {
         if (error) {

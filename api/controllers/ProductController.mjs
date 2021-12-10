@@ -1,6 +1,9 @@
 import csvtojson from 'csvtojson'
 import axios from 'axios'
+import path from 'path'
 import { unzip, loadImage, imageBase64, checkUrl } from '../helpers/index.mjs'
+import { commandFunction } from '../helpers/index.mjs'
+import { exec } from 'child_process'
 class ProductController {
 
     static async load(req, res) {
@@ -137,6 +140,31 @@ class ProductController {
         })
 
     }
+
+
+    static async deleteImages(req, res) {
+
+        const command = `rm -rf ${path.resolve()}/uploads/*.* `
+
+        exec(command, (error, stdout, stderr) => {
+            if (error) {
+                res.json({
+                    msg: 'Erro ao tentar deletar as  imagens'
+                })
+                console.error(`exec error: ${error}`);
+                return
+            }
+            console.log(`stdout: ${stdout}`);
+            console.error(`stderr: ${stderr}`);
+
+            res.json({
+                msg: 'Todas as imagens foram deletadas'
+            })
+        })
+
+        // console.log('delete image')
+    }
+
 }
 
 export { ProductController }
