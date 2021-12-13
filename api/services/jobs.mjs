@@ -15,24 +15,14 @@ cron.schedule('0 26 16 * * 1-5', () => {
     BotController.testBot()
 });
 
-import { existsSync } from 'fs'
-import path from 'path';
+// import { existsSync } from 'fs'
+// import path from 'path';
+
+
 
 (async() => {
+    BotController.reportDaily()
 
-    // IssueController.index()
-    const file = 'Promoção de Domingo (Gigante 35cm) - Point'
-
-    const pathJpeg = `${path.resolve()}/uploads/${file}.jpeg`
-
-
-    // if (existsSync(`${path.resolve()}/uploads/Promoção de Domingo (Gigante 35cm) - Point.jpeg`)) {
-    if (existsSync(pathJpeg)) {
-        //Promoção de Domingo (Gigante 35cm) - Point
-        console.log('exist')
-    } else {
-        console.log('not exists')
-    }
 
 
 

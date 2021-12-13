@@ -1,9 +1,8 @@
 import moment from "moment"
-import { apiRedmine } from "../services/api.mjs"
 import dotenv from 'dotenv'
-import { apiRocket, apiGit } from "../services/api.mjs"
+import { apiRocket, apiRedmine } from "../services/api.mjs"
 // import Commit from "../Model/Commit.js"
-import { commandFunction } from "../helpers/index.mjs"
+import { devUserRocket } from "../helpers/index.mjs"
 dotenv.config()
 
 
@@ -20,10 +19,14 @@ class BotController {
 
         let textReport = `.\n:robot: Report geral do Projeto de Marketplace *${moment(dateFilter).format('DD/MM/YYYY')} ${moment().format('HH:mm')}*\n.\n`
 
+        // return console.log(data.issues)
         data.issues.map((issue, index) => (
 
-            textReport += `${index + 1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} - *${issue.status.name}*\n`
+            textReport += `${index + 1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} - ${devUserRocket(issue)} - *${issue.status.name}*\n`
         ))
+
+        return console.log(textReport)
+
         let cont = 0
         response.data.time_entries.map((entry, index) => (!textReport.includes(entry.issue.id) && cont++,
             // textReport+=`${cont + data.issues.length} - https://redmine.codificar.com.br/issues/${entry.issue.id}\n`

@@ -107,3 +107,29 @@ export const commandFunction = async(command) => {
         return true
     });
 }
+
+export const devUserRocket = (user) => {
+
+    // return user
+
+    if (!user.hasOwnProperty('assigned_to')) {
+        return
+    }
+
+    // if (!('assigned_to' in user)) {
+    //     return
+    // }
+    const userRocket = '@' + user.assigned_to.name
+        .split(' ')
+        .slice(0, 2)
+        .join('.')
+        .toLowerCase()
+
+
+
+    if (userRocket === '@wallace.souza') {
+        return '@wallace.sousa'
+    }
+
+    return userRocket
+}
