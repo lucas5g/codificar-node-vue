@@ -21,7 +21,7 @@ cron.schedule('0 26 16 * * 1-5', () => {
 
 
 (async() => {
-    BotController.reportDaily()
+    // BotController.reportDaily()
 
 
 
