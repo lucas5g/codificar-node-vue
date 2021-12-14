@@ -113,7 +113,7 @@ export const devUserRocket = (user) => {
     // return user
 
     if (!user.hasOwnProperty('assigned_to')) {
-        return
+        return ''
     }
 
     // if (!('assigned_to' in user)) {
@@ -127,7 +127,7 @@ export const devUserRocket = (user) => {
 
 
 
-    if (userRocket === '@wallace.souza') {
+    if (userRocket.includes('wallace.souza')) {
         return '@wallace.sousa'
     }
 

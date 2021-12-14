@@ -9,7 +9,8 @@ dotenv.config()
 class BotController {
 
     static async reportDaily() {
-        const dateFilter = moment().format('YYYY-MM-DD')
+        // const dateFilter = moment().format('YYYY-MM-DD')
+        const dateFilter = '2021-12-13'
 
         const filter = `updated_on=${dateFilter}&status_id=*&sort=status`
         const { data } = await apiRedmine.get(`/issues.json?${filter}`)
@@ -22,10 +23,10 @@ class BotController {
         // return console.log(data.issues)
         data.issues.map((issue, index) => (
 
-            textReport += `${index + 1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} - ${devUserRocket(issue)} - *${issue.status.name}*\n`
+            textReport += `${index + 1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} ${devUserRocket(issue)} - *${issue.status.name}*\n`
         ))
 
-        return console.log(textReport)
+        // return console.log(textReport)
 
         let cont = 0
         response.data.time_entries.map((entry, index) => (!textReport.includes(entry.issue.id) && cont++,
