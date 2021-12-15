@@ -9,8 +9,8 @@ dotenv.config()
 class BotController {
 
     static async reportDaily() {
-        const dateFilter = moment().format('YYYY-MM-DD')
-            // const dateFilter = '2021-12-13'
+        // const dateFilter = moment().format('YYYY-MM-DD')
+        const dateFilter = '2021-12-14'
 
         const filter = `updated_on=${dateFilter}&status_id=*&sort=status`
         const { data } = await apiRedmine.get(`/issues.json?${filter}`)

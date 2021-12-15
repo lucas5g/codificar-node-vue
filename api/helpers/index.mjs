@@ -124,12 +124,19 @@ export const devUserRocket = (user) => {
         .slice(0, 2)
         .join('.')
         .toLowerCase()
+        .replace('ç', 'c')
 
 
 
     if (userRocket.includes('wallace.souza')) {
         return '@wallace.sousa'
     }
+
+    if (userRocket.includes('maurício')) {
+        return '@mauricio.silva'
+    }
+
+
 
     return userRocket
 }
