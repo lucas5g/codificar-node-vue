@@ -10,7 +10,7 @@ class BotController {
 
     static async reportDaily() {
         const dateFilter = moment().format('YYYY-MM-DD')
-            // const dateFilter = '2021-12-14'
+            // const dateFilter = '2021-12-15'
 
         const filter = `updated_on=${dateFilter}&status_id=*&sort=status`
         const { data } = await apiRedmine.get(`/issues.json?${filter}`)
@@ -18,26 +18,32 @@ class BotController {
         // console.log(data)
         const response = await apiRedmine.get(`/time_entries.json?from=${dateFilter}&to=${dateFilter}`)
 
-        let textReport = `.\n:robot: Report geral do Projeto de Marketplace *${moment(dateFilter).format('DD/MM/YYYY')} ${moment().format('HH:mm')}*\n.\n`
+        let textReport = `\n:robot: Report geral do Projeto de Marketplace *${moment(dateFilter).format('DD/MM/YYYY')} ${moment().format('HH:mm')}*\n`
 
         // return console.log(data.issues)
         data.issues.map((issue, index) => (
 
-            textReport += `${index + 1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} ${devUserRocket(issue)} - *${issue.status.name}*\n`
+            textReport += `
+                ${index + 1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} 
+                ${devUserRocket(issue)} - *${issue.project.name.toUpperCase().trim()}* - ${issue.status.name}\n`
         ))
 
         // return console.log(textReport)
 
         let cont = 0
+            // console.log(response.data.time_entries)
+        let test = ''
         response.data.time_entries.map((entry, index) => (!textReport.includes(entry.issue.id) && cont++,
             // textReport+=`${cont + data.issues.length} - https://redmine.codificar.com.br/issues/${entry.issue.id}\n`
-            textReport += !textReport.includes(entry.issue.id) ? `${cont + data.issues.length} - https://redmine.codificar.com.br/issues/${entry.issue.id} - ${entry.comments}\n` : ''
+            // console.log(entry.issue);
+            // console.log(entry),
+            textReport += !textReport.includes(entry.issue.id) ? `${cont + data.issues.length} - https://redmine.codificar.com.br/issues/${entry.issue.id} - ${devUserRocket(entry.user)} ${entry.comments}\n` : ''
         ))
 
         console.log(textReport)
-
         if (process.env.BASE_URL === 'http://localhost:8000') {
             console.log('envia job localhost ')
+                // this.sendMessageRocket('@lucas.sousa', textReport)
             return
         }
         console.log('Envia job em produção')

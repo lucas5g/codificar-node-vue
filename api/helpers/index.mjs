@@ -112,30 +112,40 @@ export const devUserRocket = (user) => {
 
     // return user
 
-    if (!user.hasOwnProperty('assigned_to')) {
-        return ''
+    // let name 
+    // if (!user.hasOwnProperty('assigned_to') || !user.hasOwnProperty) {
+    //     return 'NÃO ATRIBUÍDA'
+    // }
+    // console.log('assigned', user.assigned_to)
+    // console.log('name', user)
+
+    // console.log(user.assigned_to)
+
+    const name = user.assigned_to ? user.assigned_to.name : user.name
+        // return "name " + name
+    if (!name) {
+        return 'NÃO ABRIBUÍDA'
     }
 
-    // if (!('assigned_to' in user)) {
-    //     return
-    // }
-    const userRocket = '@' + user.assigned_to.name
+    if (name === 'Wallace Souza') {
+        return '@wallace.sousa'
+    }
+
+    if (name === 'Maurício  da Silva Souza') {
+        return '@mauricio.silva'
+    }
+
+    if (name === 'Davi  Porto Araújo') {
+        return '@davi.araujo'
+
+    }
+
+    const userRocket = '@' + name
         .split(' ')
         .slice(0, 2)
         .join('.')
         .toLowerCase()
         .replace('ç', 'c')
-
-
-
-    if (userRocket.includes('wallace.souza')) {
-        return '@wallace.sousa'
-    }
-
-    if (userRocket.includes('maurício')) {
-        return '@mauricio.silva'
-    }
-
 
 
     return userRocket
