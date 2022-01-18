@@ -6,12 +6,12 @@
         :href="issue.url"
         target="_blank"
         class="list-group-item"
-        :class="issue.assigned_to === undefined && 'bg-warning'"
+        :class="setClass(issue)"
         v-for="issue in issues"
         :key="issue.id"
       >
-          {{ issue.subject }} - {{ issue.id }}
-          {{ issue.assigned_to === undefined ? " - Quem pode pegar?" : "" }}
+        {{ issue.subject }} - {{ issue.id }}
+        {{ issue.assigned_to === undefined ? " - Quem pode pegar?" : "" }}
       </a>
     </div>
   </div>
@@ -24,7 +24,21 @@ export default {
     status: String,
     assignedSelected: String,
   },
- 
+  methods: {
+    setClass(issue) {
+      // const { priority } = issue
+      console.log(issue.assigned_to);
+      if (issue.assigned_to === undefined) {
+        return "bg-warning";
+      }
+
+      if (issue.priority === "Normal" || issue.priority === "Baixa") {
+        return;
+      }
+
+      return "bg-danger";
+    },
+  },
 };
 </script>
 
