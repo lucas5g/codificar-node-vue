@@ -35,7 +35,7 @@ export default {
           (text += `${index+1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} - ${issue.project.name}\n\n`)
       );
       console.log(text);
-      navigator.clipboard.writeText(text)
+      navigator.clipboard.write(text)
     },
     setClass(issue) {
       // const { priority } = issue
