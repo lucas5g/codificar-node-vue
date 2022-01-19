@@ -54,6 +54,38 @@ class BotController {
 
     }
 
+    static async reportCompleted() {
+
+        // const dateFilterTest = moment().format()
+
+        const dateFilter = moment().format('2022-01-13T20:37')
+        console.log(dateFilter)
+
+        const filter = `updated_on=${dateFilter}&status_id=5&sort=id`
+        const { data } = await apiRedmine.get(`/issues.json?${filter}`)
+
+        let text = ''
+
+        const issues = data.issues.filter(issue => {
+                const dateTime = new Date(dateFilter)
+                console.log({ dateTime })
+
+                return dateTime >= new Date(issue.updated_on)
+            })
+            // console.log({ issue })
+        issues.map((issue, index) => (
+
+            text += `${index + 1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} - ${issue.project.name} - ${issue.updated_on}\n\n`
+        ))
+
+
+        console.log(text)
+
+        // console.log(data.issues.map(issue => console.log(issue.status)))
+
+    }
+
+
     static async testBot() {
         console.log('job test')
         this.sendMessageRocket('@lucas.sousa', 'O Bot tá ok :smile:')
