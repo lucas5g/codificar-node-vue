@@ -32,7 +32,7 @@ export default {
 
       issues.map(
         (issue, index) =>
-          (text += `${index+1} - https://redmine.codificar.com.br/${issue.id} - ${issue.subject} - ${issue.project.name}\n\n`)
+          (text += `${index+1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} - ${issue.project.name}\n\n`)
       );
       console.log(text);
       navigator.clipboard.writeText(text)
