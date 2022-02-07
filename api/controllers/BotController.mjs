@@ -1,43 +1,34 @@
 import moment from "moment"
 import dotenv from 'dotenv'
-import { apiRocket, apiRedmine } from "../services/api.mjs"
+import { apiRocket, apiRedmine, api } from "../services/api.mjs"
 // import Commit from "../Model/Commit.js"
 import { devUserRocket } from "../helpers/index.mjs"
+import axios from "axios"
 dotenv.config()
 
 
 class BotController {
 
     static async reportDaily() {
-        const dateFilter = moment().format('YYYY-MM-DD')
-            // const dateFilter = '2021-12-15'
 
-        const filter = `updated_on=${dateFilter}&status_id=*&sort=status`
-        const { data } = await apiRedmine.get(`/issues.json?${filter}`)
-
-        // console.log(data)
-        const response = await apiRedmine.get(`/time_entries.json?from=${dateFilter}&to=${dateFilter}`)
-
+        const dateFilter = moment()
+        const { data } = await api.get(`/api/issues/report`)
         let textReport = `\n:robot: Report geral do Projeto de Marketplace *${moment(dateFilter).format('DD/MM/YYYY')} ${moment().format('HH:mm')}*\n`
 
-        // return console.log(data.issues)
         data.issues.map((issue, index) => (
 
             textReport += `
-                ${index + 1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} 
-                ${devUserRocket(issue)} - *${issue.project.name.toUpperCase().trim()}* - ${issue.status.name}\n`
+            ${index + 1} - ${issue.id} - ${issue.subject} 
+            ${issue.assigned_to} - *${issue.project.toUpperCase().trim()}* - ${issue.status}\n`
         ))
 
-        // return console.log(textReport)
-
         let cont = 0
-            // console.log(response.data.time_entries)
-        let test = ''
-        response.data.time_entries.map((entry, index) => (!textReport.includes(entry.issue.id) && cont++,
-            // textReport+=`${cont + data.issues.length} - https://redmine.codificar.com.br/issues/${entry.issue.id}\n`
-            // console.log(entry.issue);
-            // console.log(entry),
-            textReport += !textReport.includes(entry.issue.id) ? `${cont + data.issues.length} - https://redmine.codificar.com.br/issues/${entry.issue.id} - ${devUserRocket(entry.user)} ${entry.comments}\n` : ''
+
+        data.times.map((time, index) => (cont++,
+            textReport += `
+            ${cont + data.issues.length} - ${time.id} - ${time.comments}
+            ${time.user} - ${time.project}\n`
+
         ))
 
         console.log(textReport)

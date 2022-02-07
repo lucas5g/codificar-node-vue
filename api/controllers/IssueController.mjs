@@ -1,5 +1,6 @@
-import { distinctArrayObj } from '../helpers/index.mjs'
+import { devUserRocket, distinctArrayObj } from '../helpers/index.mjs'
 import { apiRedmine } from '../services/api.mjs'
+import moment from 'moment'
 
 
 class IssueController {
@@ -41,6 +42,47 @@ class IssueController {
         const { data } = await apiRedmine.get(`/time_entries.json?from=${from}&to=${to}`)
 
         return res.json(data)
+
+    }
+
+    static async report(req, res) {
+        const date = req.query.date || moment().format('YYYY-MM-DD')
+
+        console.log(date)
+        const filter = `updated_on=${date}&status_id=*&sort=status`
+        const { data } = await apiRedmine.get(`/issues.json?${filter}`)
+
+        const { data: time_entries } = await apiRedmine.get(`/time_entries.json?from=${date}&to=${date}`)
+
+
+        const issues = data.issues.map(issue => ({
+            id: `https://redmine.codificar.com.br/issues/${issue.id}`,
+            subject: issue.subject,
+            assigned_to: devUserRocket(issue),
+            project: issue.project.name,
+            status: issue.status.name
+        }))
+
+        const times = time_entries.time_entries
+            .filter(time => time.comments)
+            .map(time => {
+                // return issues[]
+                return time.comments && {
+                    id: `https://redmine.codificar.com.br/issues/${time.issue.id}`,
+                    comments: time.comments || 'SEM COMENTÁRIOS',
+                    project: time.project.name,
+                    user: devUserRocket(time.user)
+                }
+            })
+
+        // console.log(time_entries.time_entries)
+        // res.json({ issues, times })
+
+
+        res.json({
+            issues,
+            times
+        })
 
     }
 }

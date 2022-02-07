@@ -26,5 +26,8 @@ export const apiGit = axios.create({
     }
 
 })
+export const api = axios.create({
+    baseURL: process.env.BASE_URL
+})
 
 // export const api =

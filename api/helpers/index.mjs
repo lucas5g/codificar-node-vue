@@ -124,7 +124,7 @@ export const devUserRocket = (user) => {
     const name = user.assigned_to ? user.assigned_to.name : user.name
         // return "name " + name
     if (!name) {
-        return 'NÃO ABRIBUÍDA'
+        return 'NÃO ATRIBUÍDA'
     }
 
     if (name === 'Wallace Souza') {
@@ -137,6 +137,11 @@ export const devUserRocket = (user) => {
 
     if (name === 'Davi  Porto Araújo') {
         return '@davi.araujo'
+
+    }
+
+    if (name === 'Leandro  Ribeiro') {
+        return '@leandro.ribeiro'
 
     }
 
