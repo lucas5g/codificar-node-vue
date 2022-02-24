@@ -26,7 +26,10 @@ class BotController {
         `
         console.log(textReport)
 
-        sendMessageRocket(`${process.env.ROCKET_CHANNEL}-errors`, textReport)
+        sendMessageRocket(`@lucas.sousa`, textReport)
+
+
+        // sendMessageRocket(`${process.env.ROCKET_CHANNEL}-errors`, textReport)
 
         return res.json({
             msg: 'pipeline',
