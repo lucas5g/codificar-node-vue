@@ -5,6 +5,7 @@ import path from 'path'
 
 import { router as routesIssues } from './routes/issueRoutes.mjs'
 import { router as routesProducts } from './routes/productRoutes.mjs'
+import { router as routesWebhooks } from './routes/webhookRoutes.mjs'
 
 // import conn from './database/conn.js'
 
@@ -16,13 +17,23 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+/**
+ * Routes Api
+ */
+
 app.use('/api/issues', routesIssues)
 app.use('/api/products', routesProducts)
-app.use('/api/trackers', (req, res) => {
+app.use('/api/webhook', routesWebhooks)
+
+app.use('/api/', (req, res) => {
     res.json({
-        msg: 'test'
+        api: 'api codificar'
     })
 })
+
+/**
+ * Routes Statics
+ */
 
 app.use('/', express.static(path.resolve() + '/dist/'))
 app.use('/importacao', express.static(path.resolve() + '/dist/'))

@@ -4,7 +4,7 @@ import { AutoController } from '../controllers/AutoController.mjs';
 import { BotController } from "../controllers/BotController.mjs";
 import { IssueController } from '../controllers/IssueController.mjs';
 
-cron.schedule('0 58 23 * * 1-5', () => {
+cron.schedule('0 55 23 * * 1-5', () => {
 
     BotController.reportDaily()
 })
@@ -23,7 +23,7 @@ cron.schedule('0 26 16 * * 1-5', () => {
 (async() => {
     // BotController.reportDaily()
     // BotController.reportCompleted()
-
+    // BotController.testBot()
 
 
 })()
