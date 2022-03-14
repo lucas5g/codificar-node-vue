@@ -2,8 +2,9 @@ import axios from 'axios'
 
 const baseUrl = () => {
     const { host } = window.location
-    if (host === 'demo.appmarketplace.com.br:8000') {
-        return 'http://demo.appmarketplace.com.br:8000/api/'
+    if (host === 'demo.appmarketplace.com.br:8000' || host === 'version.aplicativoderestaurante.com.br') {
+        // return 'http://demo.appmarketplace.com.br:8000/api/'
+        return 'http://version.aplicativoderestaurante.com.br/api'
     }
 
     // if (host === '127.0.0.1:8081') {
@@ -19,4 +20,4 @@ export const api = axios.create({
 })
 
 console.log('BASE_URL' + baseUrl())
-console.log('07/12/2021 - 1056')
+console.log('0314')
