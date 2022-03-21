@@ -7,6 +7,7 @@ class IssueController {
 
     static async index(req, res) {
 
+
         const { data } = await apiRedmine.get(`/issues.json?sort=status&limit=50`)
             // return res.json(data)
         const issues = data.issues.map(issue => {
@@ -30,8 +31,9 @@ class IssueController {
         const projects = distinctArrayObj({ arrayObj: issues, filter: 'project' })
             // console.log(issues.length)
 
+        // return issues
         return res
-            .json({ issues, assigneds, trackers, projects })
+            .json({ issues, assigneds, trackers, projects, issuesLength: issues.length })
 
     }
 
@@ -85,6 +87,39 @@ class IssueController {
         })
 
     }
+
 }
 
 export { IssueController }
+
+
+
+//     static async filter(req, res) {
+
+//         const filter = req.query
+//         console.log(filter)
+//         const { data } = await apiRedmine.get(`/issues.json`, {
+//             params: {
+//                 updated_on: moment().format('YYYY-MM-DD'),
+
+//             }
+//         })
+//         const issues = data.issues.map(issue => {
+//             return {
+//                 url: `https://redmine.codificar.com.br/issues/${issue.id}`,
+//                 subject: issue.subject,
+//                 status: issue.status.name,
+//                 id: issue.id,
+//                 assigned_to: issue.assigned_to && issue.assigned_to,
+//                 tracker: issue.tracker,
+//                 priority: issue.priority.name,
+//                 project: issue.project,
+//                 updated_on: issue.updated_on
+//             }
+//         })
+
+//         return res
+//             .json({
+//                 issues: issues.length
+//             })
+//     }
