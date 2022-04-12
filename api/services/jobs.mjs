@@ -30,9 +30,9 @@ cron.schedule('0 26 16 * * 1-5', () => {
 
 
     const issuesFilterNewOrClosed = data.issues.filter(issue => {
-        return issue && (issue.status === 'Concluída' || issue.status === 'Nova' || issue.status === 'Rejeitada')
-    })
-    console.log(issuesFilterNewOrClosed)
+            return issue && (issue.status === 'Concluída' || issue.status === 'Nova' || issue.status === 'Rejeitada')
+        })
+        // console.log(issuesFilterNewOrClosed)
         // console.log({
         //     issues: data.issues,
         //     issuesFilterNewOrClosed: issuesFilterNewOrClosed.length

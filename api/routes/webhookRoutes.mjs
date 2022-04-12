@@ -227,4 +227,13 @@ router.get('/', (req, res) => {
     })
 })
 
+
+router.post('/fretes', (req, res) => {
+    console.log(req.body)
+
+    res.json({
+        msg: 'deu bom aaqui'
+    })
+})
+
 export { router }
