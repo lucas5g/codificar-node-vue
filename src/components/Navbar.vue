@@ -22,13 +22,13 @@
               >Import
             </router-link>
           </li>
-          <!-- <li class="nav-item">
+          <li class="nav-item">
             <router-link
               class="nav-link text-white"
               to="/issues"
               >Issues
             </router-link>
-          </li> -->
+          </li>
         </ul>
       </div>
     </div>

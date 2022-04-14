@@ -3,7 +3,7 @@
     <h6 @click="copyIssues(issues)" title="Clique para Copiar">
       {{ status }} ({{ issues.length }})
     </h6>
-    <div class="list-group">
+    <!-- <div class="list-group">
       <a
         :href="issue.url"
         target="_blank"
@@ -14,6 +14,27 @@
       >
         {{ issue.subject }} - {{ issue.id }}
         {{ issue.assigned_to === undefined ? " - Quem pode pegar?" : "" }}
+      </a>
+    </div> -->
+    <div class="list-group">
+      <a
+        :href="issue.url"
+        target="_blank"
+        class="list-group-item list-group-item-action"
+        :class="setClass(issue)"
+        aria-current="true"
+        v-for="issue in issues"
+        :key="issue.id"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h6 class="mb-1">{{ issue.project.name }}</h6>
+          <small style="font-size: 11px">{{ issue.id }}</small>
+        </div>
+        <!-- <p class="mb-1">Some placeholder content in a paragraph.</p> -->
+        <small>
+          {{ issue.subject }}
+          {{ issue.assigned_to === undefined ? " - Quem pode pegar?" : "" }}
+        </small>
       </a>
     </div>
   </div>
@@ -32,11 +53,13 @@ export default {
 
       issues.map(
         (issue, index) =>
-          (text += `${index+1} - https://redmine.codificar.com.br/issues/${issue.id} - ${issue.subject} - ${issue.project.name}\n\n`)
+          (text += `${index + 1} - https://redmine.codificar.com.br/issues/${
+            issue.id
+          } - ${issue.subject} - ${issue.project.name}\n\n`)
       );
       console.log(text);
-    //   document
-      navigator.clipboard.writeText(text)
+      //   document
+      navigator.clipboard.writeText(text);
     },
     setClass(issue) {
       // const { priority } = issue

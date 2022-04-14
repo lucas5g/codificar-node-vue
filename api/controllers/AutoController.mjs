@@ -18,9 +18,9 @@ class AutoController {
             git add . && 
             git commit -m "${message}" && 
             git push &&
-            ssh versionaplicativoderestaurante "cd /var/www/codificar/codificar-node-vue &&
-            sudo git pull &&
-            sudo npm run  build && 
+            ssh versionaplicativoderestaurante "cd codificar/codificar-node-vue &&
+            git pull &&
+            npm run  build && 
             pm2 restart 0"        
         `
         return command
